@@ -252,6 +252,12 @@ body.xtreme .tag{animation:spin 1s linear infinite}
 .toast{right:12px;bottom:66px;font-size:13px}
 }
 
+/* Ancres */
+#calendrier{scroll-margin-top:96px}
+.door.ping::after{content:"";position:absolute;inset:-7px;border-radius:28px;border:3px solid var(--red);pointer-events:none;animation:ping 1.4s ease-out 3}
+@keyframes ping{from{opacity:1;scale:.96}to{opacity:0;scale:1.18}}
+@media(max-width:640px){#calendrier{scroll-margin-top:12px}.door.ping::after{border-radius:16px;inset:-5px}}
+@media(prefers-reduced-motion:reduce){.door.ping::after{animation:none;opacity:1}}
 /* Mobile */
 @media(max-width:640px){
 .top{padding:16px}.top-right .when{display:none}.logo{font-size:24px}
@@ -665,6 +671,25 @@ console.log('%c' + [
 
 /* Accès pour les tests */
 window.__eggs = {snow, confetti, terms, parade, slap, toast, xtreme, wave, stNicolas, diploma};
+})();
+
+/* ===== Ancres : #calendrier et #case-N (lien depuis Teams) ===== */
+(function(){
+function go(){
+  const m = location.hash.match(/^#case-(\d{1,2})$/);
+  if (!m) return;
+  const k = +m[1], d = doors.querySelectorAll('.door')[k-1];
+  if (!d) return;
+  d.scrollIntoView({block: 'center'});
+  setTimeout(() => {
+    const dd = doors.querySelectorAll('.door')[k-1];
+    if (!dd) return;
+    dd.classList.add('ping');
+    setTimeout(() => dd.classList.remove('ping'), 4500);
+  }, 900);
+}
+addEventListener('load', go);
+addEventListener('hashchange', go);
 })();
 </script>
 </body></html>
