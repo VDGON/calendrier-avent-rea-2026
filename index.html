@@ -276,6 +276,37 @@ body.xtreme .tag{animation:spin 1s linear infinite}
 .foot-row{padding:48px 16px 0;gap:24px}
 .card{padding:28px 22px 24px;border-radius:22px;box-shadow:inset 0 0 0 2px var(--ink),6px 6px 0 var(--red)}
 }
+/* ===== Mur des vœux ===== */
+.wall{max-width:1360px;margin:0 auto;padding:0 24px 110px}
+.wall[hidden]{display:none}
+.wall-in{position:relative;overflow:hidden;background:var(--green);color:var(--paper);border-radius:28px;padding:clamp(28px,5vw,64px)}
+.wall-deco{position:absolute;right:-6%;top:-8%;width:52%;height:60%;pointer-events:none;rotate:180deg}
+.wall-in>*:not(.wall-deco){position:relative}
+.wall .k{color:#F7B9A4}
+.wall-title{margin:12px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40px,6.4vw,92px);line-height:.9;text-transform:uppercase;max-width:15ch}
+.wall-txt{max-width:560px;margin:20px 0 28px;font-size:18px;line-height:1.45;font-weight:500}
+.wall-ex{display:inline-flex;flex-direction:column;gap:6px;max-width:min(470px,100%);background:var(--paper);color:var(--ink);border-radius:18px;padding:14px 18px;rotate:-2deg;box-shadow:6px 6px 0 var(--red)}
+.wall-ex-k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red-d)}
+.wall-ex-t{font-size:17px;font-weight:600;line-height:1.35;min-height:2.7em;transition:opacity .3s}
+.wall-cta{display:flex;align-items:center;flex-wrap:wrap;gap:14px 18px;margin-top:30px}
+.wall-go{height:56px;padding:0 7px 0 24px;font-size:17px;background:var(--paper);color:var(--ink);transition:color .3s}
+.wall-go b{font-weight:600}
+.wall-go>span{width:42px;height:42px}
+.wall-go::before{right:7px;top:7px;width:42px;height:42px}
+.wall-go:hover{color:var(--paper)}
+.wall-when{font-size:14px;font-weight:600;color:#F7B9A4}
+#wishwall{scroll-margin-top:96px}
+/* Lien vers le formulaire dans les fiches */
+.wish-link{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:10px 14px;border-radius:999px;background:var(--green);color:var(--paper);font-size:14px;font-weight:600;text-decoration:none;rotate:-1.5deg;transition:background .2s}
+.wish-link:hover{background:var(--red);color:var(--paper)}
+@media(max-width:640px){
+.wall{padding:0 12px 72px}
+.wall-in{border-radius:22px;padding:28px 22px 30px}
+.wall-title{font-size:13vw}
+.wall-txt{font-size:16px}
+.wall-deco{width:90%;height:45%;right:-20%}
+#wishwall{scroll-margin-top:76px}
+}
 /* ===== Mode mobile (inspiré de la vidéo) ===== */
 .nav{display:contents}
 .modes{order:1}.logo{order:2}.top-right{order:3}
@@ -384,6 +415,20 @@ h1 .ln:first-child{text-align:right}
   <p class="note" id="note" hidden><strong>Version de démonstration :</strong> toutes les fenêtres sont accessibles en mode démo. Le curseur simule la date du jour (case mise en évidence). Les communications professionnelles sont placées les 1er, 2, 3, 4 et 7 décembre. La grille correspond aux vrais jours de décembre 2026.</p>
 </section>
 
+<section class="wall" id="wishwall" hidden>
+  <div class="wall-in" data-reveal>
+    <svg class="wall-deco" aria-hidden="true" viewBox="0 0 400 200" preserveAspectRatio="none" fill="none"><path d="M-20 170C60 80 130 230 210 130S340 50 430 110" stroke="#E5401B" stroke-width="18" stroke-linecap="round" opacity=".85"/></svg>
+    <div class="k">Le mur des vœux</div>
+    <h2 class="wall-title" id="wallTitle">Et vous, que souhaitez-vous à l’équipe&nbsp;?</h2>
+    <p class="wall-txt" id="wallTxt">Un mot, une phrase, un merci… Le prénom est facultatif. Tous les vœux seront dévoilés le 23&nbsp;décembre, ici même.</p>
+    <div class="wall-ex" id="wallExBox"><span class="wall-ex-k">Par exemple</span><span class="wall-ex-t" id="wallEx"></span></div>
+    <div class="wall-cta">
+      <a class="cta wall-go" id="wallGo" href="https://forms.cloud.microsoft/e/3C2XcFdXA5" target="_blank" rel="noopener"><b>Déposer mon vœu</b><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FBF4EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+      <span class="wall-when" id="wallWhen"></span>
+    </div>
+  </div>
+</section>
+
 <footer class="foot">
   <svg aria-hidden="true" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#FBF4EA" stroke-width="3" opacity=".14"><path d="M-40 120c120-80 160 80 80 100s-60-140 60-120 120 160 220 100-40-160 60-140 140 140 260 80 0-180 120-120 120 160 240 100 40-140 160-120 140 120 260 60"/><path d="M-40 380c140-60 160 100 60 120s-40-160 80-120 100 180 220 100-60-160 60-140 160 140 260 60 0-160 140-100 100 140 240 80 60-140 180-100 120 120 200 40"/></svg>
   <div class="foot-row">
@@ -421,7 +466,22 @@ function showWishes(){
   WISHES.forEach((w,i)=>{const q=document.createElement('blockquote');q.className='wish';q.style.setProperty('--r',(i%2?1.2:-1.2)+'deg');q.style.setProperty('--d',i*60+'ms');const p=document.createElement('p');p.textContent=w[1];q.append(p);if(w[0]){const c=document.createElement('cite');c.textContent='— '+w[0];q.append(c)}box.append(q)});
   modal.querySelector('.close').onclick=close;
 }
-function bindXmas(){const x=document.getElementById('xmas');if(x&&x.tagName==='BUTTON')x.onclick=showWishes}
+function bindXmas(){const x=document.getElementById('xmas');if(x&&x.tagName==='BUTTON')x.onclick=showWishes;wall()}
+/* Section « Le mur des vœux » : formulaire jusqu'au 22, puis affichage des vœux */
+function wall(){
+  const w=document.getElementById('wishwall');if(!w)return;
+  const s=xmasState(),go=document.getElementById('wallGo'),when=document.getElementById('wallWhen');
+  if(s==='form'){
+    w.hidden=false;go.href=FORM;go.target='_blank';go.onclick=null;go.querySelector('b').textContent='Déposer mon vœu';
+    const n=Math.ceil((new Date(2026,11,23)-new Date())/864e5);
+    when.textContent=demo?'Formulaire ouvert jusqu’au 22 décembre':n<=1?'Dernier jour pour déposer votre vœu !':'Encore '+n+' jours pour le déposer (jusqu’au 22 décembre)';
+  }else if(s==='reveal'){
+    w.hidden=false;go.removeAttribute('target');go.href='#wishwall';go.onclick=e=>{e.preventDefault();showWishes()};go.querySelector('b').textContent='Découvrir les vœux';
+    document.getElementById('wallTitle').textContent='Les vœux de l’équipe sont arrivés !';
+    document.getElementById('wallTxt').textContent='Merci à toutes celles et ceux qui ont pris un moment pour écrire. Bonne lecture, et belles fêtes !';
+    document.getElementById('wallExBox').hidden=true;when.textContent=WISHES.length+' vœu'+(WISHES.length>1?'x':'')+' à découvrir';
+  }else w.hidden=true;
+}
 /* ===== Progression : cases ouvertes sur cases disponibles ===== */
 function progress(){
   const el=document.getElementById('progress');if(!el)return;
@@ -801,6 +861,39 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && top.classL
 /* Un choix dans le menu le referme (le mode démo ouvre ensuite sa fenêtre de mot de passe) */
 document.querySelectorAll('#nav .pill, #nav .cta').forEach(el => el.addEventListener('click', () => set(false)));
 addEventListener('resize', () => { if (innerWidth > 640) set(false); });
+})();
+
+/* ===== Mur des vœux : exemples qui défilent et lien dans les fiches ===== */
+(function(){
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+const EX = [
+  'Plus de cafés partagés, moins de mails en attente ☕',
+  'Merci pour l’entraide au quotidien, ça compte énormément 💛',
+  'Des dossiers qui avancent et des rires qui continuent 😄',
+  'Une année 2027 aussi surprenante qu’un ornithorynque 🦆',
+  'Que chacun·e trouve le temps de souffler pendant les fêtes 🎄',
+  'Bravo pour cette année, on forme une sacrée équipe !'
+];
+const ex = document.getElementById('wallEx');
+if (ex) {
+  let i = 0; ex.textContent = EX[0];
+  if (!RM.matches) setInterval(() => {
+    ex.style.opacity = 0;
+    setTimeout(() => { i = (i + 1) % EX.length; ex.textContent = EX[i]; ex.style.opacity = 1; }, 300);
+  }, 4200);
+}
+/* Dans chaque fiche ouverte, tant que le formulaire est ouvert */
+const prevShow = show;
+show = function(k, locked){
+  prevShow(k, locked);
+  if (locked || xmasState() !== 'form') return;
+  const c = modal.querySelector('.card');
+  if (!c || c.querySelector('.wish-link')) return;
+  const a = document.createElement('a');
+  a.className = 'wish-link'; a.href = FORM; a.target = '_blank'; a.rel = 'noopener';
+  a.textContent = '✍️ Et vous, un vœu pour l’équipe ? Déposez-le ici';
+  c.append(a);
+};
 })();
 </script>
 </body></html>
