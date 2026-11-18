@@ -276,19 +276,76 @@ body.xtreme .tag{animation:spin 1s linear infinite}
 .foot-row{padding:48px 16px 0;gap:24px}
 .card{padding:28px 22px 24px;border-radius:22px;box-shadow:inset 0 0 0 2px var(--ink),6px 6px 0 var(--red)}
 }
+/* ===== Mode mobile (inspiré de la vidéo) ===== */
+.nav{display:contents}
+.modes{order:1}.logo{order:2}.top-right{order:3}
+.menu-btn,.menu-backdrop{display:none}
+@media(max-width:640px){
+/* En-tête compact et collant : logo à gauche, bouton menu à droite */
+.top{position:sticky;top:0;z-index:8;flex-wrap:nowrap;padding:12px 16px;background:var(--cream);transition:box-shadow .3s}
+.top.scrolled{box-shadow:0 1px 0 #14141420}
+.logo{order:0;font-size:26px}
+.menu-btn{order:4;display:inline-flex;margin-left:auto;width:42px;height:42px;align-items:center;justify-content:center;border:1.5px solid var(--red);border-radius:12px;background:transparent;color:var(--red);cursor:pointer;transition:background .2s,color .2s}
+.menu-btn:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.top.open .menu-btn{background:var(--red);color:var(--paper)}
+.menu-btn .i-close{display:none}.top.open .menu-btn .i-open{display:none}.top.open .menu-btn .i-close{display:block}
+/* Menu : pastilles empilées à droite, fond flouté */
+.nav{display:none}
+.top.open .nav{display:flex;position:fixed;top:72px;right:16px;z-index:9;flex-direction:column;align-items:flex-end;gap:12px}
+.top.open .modes{flex-direction:column;align-items:flex-end;gap:12px}
+.top.open .top-right{display:flex}
+.top.open .top-right .when{display:none}
+.top.open .nav .pill{height:54px;padding:0 24px;font-size:18px;box-shadow:inset 0 0 0 1.5px var(--ink),0 6px 18px #14141418}
+.top.open .nav .cta{height:56px;font-size:18px;padding:0 7px 0 24px;box-shadow:0 6px 18px #14141430}
+.top.open .nav .cta>span{width:42px;height:42px}
+.top.open .nav .pill,.top.open .nav .cta{animation:menuIn .45s cubic-bezier(.3,1.5,.5,1) both}
+.top.open #demo{animation-delay:.05s}.top.open .nav .cta{animation-delay:.1s}
+@keyframes menuIn{from{opacity:0;translate:16px -8px;scale:.9}}
+.menu-backdrop{position:fixed;inset:0;z-index:7;background:#F4ECE2b8;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.top.open~.menu-backdrop{display:block;animation:fade .2s}
+/* Titre géant en quinconce, comme la vidéo */
+.hero{padding-top:24px}
+h1{font-size:19.5vw;line-height:.84}
+h1 .ln:first-child{text-align:right}
+.s1{display:block;left:2%;top:21%;font-size:13px;padding:7px 12px}
+.s2{bottom:-30px}
+/* Calendrier : 4 grandes cartes par ligne, jour de la semaine dans chaque carte */
+.cal-head{margin-bottom:20px}
+.weekdays{display:none}
+.doors{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;grid-auto-flow:dense}
+.doors>span:first-child{order:99}
+.door{border-radius:16px;aspect-ratio:1/1.08;gap:4px;padding:6px}
+.door::before{content:attr(data-wd);position:absolute;left:9px;top:8px;font:700 9px/1 'Inter Tight',sans-serif;letter-spacing:.06em;opacity:.7}
+.num{font-size:clamp(30px,10vw,40px)}
+.wk{font-size:14px}.lock{width:13px;height:13px}
+.tag{display:inline-block;top:-8px;right:-5px;font-size:8.5px;padding:5px 7px}
+.dlabel{font-size:9px;letter-spacing:.04em}.dkind{font-size:13px}
+.xmas{grid-column:1/-1;border-radius:16px;min-height:150px;padding:20px}
+.door.today{box-shadow:0 0 0 3px var(--cream),0 0 0 6px var(--red)}
+.door.v-line.today{box-shadow:inset 0 0 0 2.5px var(--red),0 0 0 3px var(--cream),0 0 0 6px var(--red)}
+.door.v-open.today{box-shadow:inset 0 0 0 2.5px var(--ink),0 0 0 3px var(--cream),0 0 0 6px var(--red)}
+.door.ping::after{border-radius:20px}
+#calendrier{scroll-margin-top:76px}
+.door{scroll-margin-top:90px}
+}
+@media(max-width:640px) and (prefers-reduced-motion:reduce){.top.open .nav .pill,.top.open .nav .cta,.top.open~.menu-backdrop{animation:none}}
 </style></head><body>
 <div class="page">
-<header class="top">
+<header class="top" id="top">
+  <div class="logo"><span>REA</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4A38" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/></svg><span>26</span></div>
+  <div class="nav" id="nav">
   <div class="modes" role="group" aria-label="Mode d'ouverture">
     <button id="real" class="pill active">Mode réel</button>
     <button id="demo" class="pill">Mode démo <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
   </div>
-  <div class="logo"><span>REA</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4A38" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/></svg><span>26</span></div>
   <div class="top-right">
     <div class="when">1 → 23 décembre<br>Une case par jour</div>
     <a class="cta" href="#calendrier">Voir le calendrier<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FBF4EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   </div>
+  </div>
+  <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><svg class="i-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><svg class="i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
 </header>
+<div class="menu-backdrop" id="menuBackdrop"></div>
 <div class="simbar" id="sim" hidden><label for="day">Simulation : <strong id="label">7 décembre</strong></label><input type="range" min="0" max="23" value="7" id="day"></div>
 <span id="status" class="sr" aria-live="polite"></span>
 
@@ -380,7 +437,7 @@ function progress(){
     n===avail?'À jour ! '+n+' case'+s(n)+' sur '+avail+' ouverte'+s(n)+' 🎉':
     'Vous avez ouvert '+n+' case'+s(n)+' sur '+avail+' disponible'+s(avail);
 }
-function render(){doors.innerHTML='<span aria-hidden="true"></span>';for(let k=1;k<=23;k++){const b=document.createElement('button');const isSun=k%7===6,isSat=k%7===5,ok=allowed(k),isToday=k===today(),o=opened();b.className=(isSun?'sunday ':isSat?'saturday ':'')+(!ok?'locked ':'')+(isToday?'today ':'')+(o.has(k)?'opened':'');b.setAttribute('aria-label','Jour '+k+(isToday?', aujourd’hui':'')+(isSun?', anecdote du dimanche':'')+(ok?', accessible':', verrouillé')+(o.has(k)?', déjà ouverte':''));b.id='case-'+k;b.style.setProperty('--i',k);b.classList.add('door',o.has(k)?'v-open':V[(k*3)%7]);b.innerHTML=(isToday?'<span class="tag">Aujourd’hui</span>':isSat?'<span class="tag">Blague</span>':isSun?'<span class="tag">Ornitho</span>':'')+(o.has(k)?'<span class="dlabel">'+k+' déc.</span><span class="dkind">'+kind(k)+'</span>':'<span class="num">'+k+'</span>'+((isSun||isSat||!ok)?'<span class="icons">'+(isSun?'<span class="wk">🦆</span>':isSat?'<span class="wk">😄</span>':'')+(!ok?LOCK:'')+'</span>':''));b.onclick=()=>{if(!ok)return show(k,true);o.add(k);if(!demo)save();show(k,false);render()};doors.appendChild(b)}doors.insertAdjacentHTML('beforeend',xmasHTML());bindXmas();countdown();progress();document.getElementById('status').textContent=demo?'Toutes les fenêtres sont ouvertes en démo':'Ouverture selon la date réelle';document.getElementById('label').textContent=day===0?'Avant décembre':day+' décembre';document.getElementById('sim').hidden=!demo;document.getElementById('note').hidden=!demo}function show(k,locked){let e=entries[k]||['Surprise à venir','Cette fenêtre attend encore sa communication professionnelle.',''];if(locked)e=['Encore un peu de patience !','Cette fenêtre sera disponible à partir du '+k+' décembre.',''];modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">'+(locked?'🔒':'🎁')+'</div><div class="eyebrow">Jour '+k+(k%7===6?' · Dimanche':k%7===5?' · Samedi':' · La minute REA')+'</div><h2></h2><p></p><div class="source"></div></article>';modal.querySelector('h2').textContent=e[0];modal.querySelector('p').textContent=e[1];modal.querySelector('.source').textContent=e[2]?'Source : '+e[2]:'';modal.querySelector('.close').onclick=close;if(!locked)for(let i=0;i<12;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.left=(25+Math.random()*50)+'%';s.style.top=(40+Math.random()*25)+'%';document.body.append(s);setTimeout(()=>s.remove(),950)}}function close(){modal.hidden=true;modal.innerHTML=''}modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});function askPassword(){modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">🔒</div><div class="eyebrow">Accès réservé</div><h2>Mode démonstration</h2><form><p><label for="pw">Mot de passe :</label><br><input type="password" id="pw" autocomplete="off"></p><p class="err"></p><button type="submit">Déverrouiller</button></form></article>';modal.querySelector('.close').onclick=close;const pw=modal.querySelector('#pw');pw.focus();modal.querySelector('form').onsubmit=async ev=>{ev.preventDefault();if(await sha256(pw.value)===PASS_HASH){unlocked=true;document.getElementById('demo').textContent='Mode démo';close();enableDemo()}else{modal.querySelector('.err').textContent='Mot de passe incorrect.';pw.select()}}}document.getElementById('demo').onclick=()=>{unlocked?enableDemo():askPassword()};function enableDemo(){demo=true;document.getElementById('demo').classList.add('active');document.getElementById('real').classList.remove('active');slider.disabled=false;render()};document.getElementById('real').onclick=()=>{demo=false;document.getElementById('real').classList.add('active');document.getElementById('demo').classList.remove('active');slider.disabled=true;render()};slider.oninput=()=>{day=+slider.value;render()};render();
+function render(){doors.innerHTML='<span aria-hidden="true"></span>';for(let k=1;k<=23;k++){const b=document.createElement('button');const isSun=k%7===6,isSat=k%7===5,ok=allowed(k),isToday=k===today(),o=opened();b.className=(isSun?'sunday ':isSat?'saturday ':'')+(!ok?'locked ':'')+(isToday?'today ':'')+(o.has(k)?'opened':'');b.setAttribute('aria-label','Jour '+k+(isToday?', aujourd’hui':'')+(isSun?', anecdote du dimanche':'')+(ok?', accessible':', verrouillé')+(o.has(k)?', déjà ouverte':''));b.id='case-'+k;b.dataset.wd=['LUN','MAR','MER','JEU','VEN','SAM','DIM'][k%7];b.style.setProperty('--i',k);b.classList.add('door',o.has(k)?'v-open':V[(k*3)%7]);b.innerHTML=(isToday?'<span class="tag">Aujourd’hui</span>':isSat?'<span class="tag">Blague</span>':isSun?'<span class="tag">Ornitho</span>':'')+(o.has(k)?'<span class="dlabel">'+k+' déc.</span><span class="dkind">'+kind(k)+'</span>':'<span class="num">'+k+'</span>'+((isSun||isSat||!ok)?'<span class="icons">'+(isSun?'<span class="wk">🦆</span>':isSat?'<span class="wk">😄</span>':'')+(!ok?LOCK:'')+'</span>':''));b.onclick=()=>{if(!ok)return show(k,true);o.add(k);if(!demo)save();show(k,false);render()};doors.appendChild(b)}doors.insertAdjacentHTML('beforeend',xmasHTML());bindXmas();countdown();progress();document.getElementById('status').textContent=demo?'Toutes les fenêtres sont ouvertes en démo':'Ouverture selon la date réelle';document.getElementById('label').textContent=day===0?'Avant décembre':day+' décembre';document.getElementById('sim').hidden=!demo;document.getElementById('note').hidden=!demo}function show(k,locked){let e=entries[k]||['Surprise à venir','Cette fenêtre attend encore sa communication professionnelle.',''];if(locked)e=['Encore un peu de patience !','Cette fenêtre sera disponible à partir du '+k+' décembre.',''];modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">'+(locked?'🔒':'🎁')+'</div><div class="eyebrow">Jour '+k+(k%7===6?' · Dimanche':k%7===5?' · Samedi':' · La minute REA')+'</div><h2></h2><p></p><div class="source"></div></article>';modal.querySelector('h2').textContent=e[0];modal.querySelector('p').textContent=e[1];modal.querySelector('.source').textContent=e[2]?'Source : '+e[2]:'';modal.querySelector('.close').onclick=close;if(!locked)for(let i=0;i<12;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.left=(25+Math.random()*50)+'%';s.style.top=(40+Math.random()*25)+'%';document.body.append(s);setTimeout(()=>s.remove(),950)}}function close(){modal.hidden=true;modal.innerHTML=''}modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});function askPassword(){modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">🔒</div><div class="eyebrow">Accès réservé</div><h2>Mode démonstration</h2><form><p><label for="pw">Mot de passe :</label><br><input type="password" id="pw" autocomplete="off"></p><p class="err"></p><button type="submit">Déverrouiller</button></form></article>';modal.querySelector('.close').onclick=close;const pw=modal.querySelector('#pw');pw.focus();modal.querySelector('form').onsubmit=async ev=>{ev.preventDefault();if(await sha256(pw.value)===PASS_HASH){unlocked=true;document.getElementById('demo').textContent='Mode démo';close();enableDemo()}else{modal.querySelector('.err').textContent='Mot de passe incorrect.';pw.select()}}}document.getElementById('demo').onclick=()=>{unlocked?enableDemo():askPassword()};function enableDemo(){demo=true;document.getElementById('demo').classList.add('active');document.getElementById('real').classList.remove('active');slider.disabled=false;render()};document.getElementById('real').onclick=()=>{demo=false;document.getElementById('real').classList.add('active');document.getElementById('demo').classList.remove('active');slider.disabled=true;render()};slider.oninput=()=>{day=+slider.value;render()};render();
 
 /* ===== Animations ===== */
 (function(){
@@ -516,7 +573,7 @@ const SPOTS = {
   giant: 'Coincé entre deux lettres géantes.',
   ribbon: 'Il fait du toboggan sur le ruban.',
   title: 'Perché au-dessus des 23 cases.',
-  case0: 'Dans une case qui n’existe pas… un lundi.',
+  case0: 'Dans une case qui n’existe pas : cherchez la case vide.',
   sunday: 'Il aime lire les fiches du dimanche.'
 };
 const TOTAL = Object.keys(SPOTS).length;
@@ -727,6 +784,23 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if
 addEventListener('load', () => { if (location.hash.startsWith('#case-')) center(true); });
 /* 4. Si le lien change sans recharger la page */
 addEventListener('hashchange', () => { pinged = false; if (center(true)) ping(); });
+})();
+
+/* ===== Menu mobile ===== */
+(function(){
+const top = document.getElementById('top'), btn = document.getElementById('menuBtn'), bd = document.getElementById('menuBackdrop');
+if (!top || !btn) return;
+function set(open){
+  top.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+}
+btn.addEventListener('click', () => set(!top.classList.contains('open')));
+if (bd) bd.addEventListener('click', () => set(false));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && top.classList.contains('open')) { set(false); btn.focus(); } });
+/* Un choix dans le menu le referme (le mode démo ouvre ensuite sa fenêtre de mot de passe) */
+document.querySelectorAll('#nav .pill, #nav .cta').forEach(el => el.addEventListener('click', () => set(false)));
+addEventListener('resize', () => { if (innerWidth > 640) set(false); });
 })();
 </script>
 </body></html>
