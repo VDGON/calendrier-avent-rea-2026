@@ -158,7 +158,7 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 .js .sticker{animation:stick .7s cubic-bezier(.3,1.6,.5,1) both}
 .js .s1{animation-delay:.75s}.js .s2{animation-delay:.9s}
 @keyframes stick{from{scale:0}}
-.bauble svg{transform-origin:50% 0;animation:swing 3.4s ease-in-out infinite}
+.bauble>svg{transform-origin:50% 0;animation:swing 3.4s ease-in-out infinite}
 @keyframes swing{0%,100%{rotate:-6deg}50%{rotate:6deg}}
 /* Apparitions au défilement */
 [data-reveal]{transition:opacity .8s ease-out,translate .9s cubic-bezier(.2,.8,.2,1)}
@@ -174,10 +174,69 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 .door:hover:not(.locked) .tag{rotate:-14deg;scale:1.12}
 .card.flip{animation:none}
 @media(prefers-reduced-motion:reduce){
-.js .top>*,.js .sticker,.bauble svg,.js h1 .ln>span,.doors.play>*{animation:none!important}
+.js .top>*,.js .sticker,.bauble>svg,.js h1 .ln>span,.doors.play>*{animation:none!important}
 .js [data-reveal],.js [data-lines] .ln>span{transition:none!important;opacity:1!important;translate:none!important}
 .js .doors>*{opacity:1!important}
 .pill::before,.cta::before,.tag{transition:none}
+}
+
+/* ===== Easter eggs ===== */
+.platy{appearance:none;border:0;background:none;padding:0;cursor:pointer;width:36px;height:27px;line-height:0;z-index:2;transition:transform .2s}
+.platy svg,.platy img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.platy:hover{transform:scale(1.3) rotate(-8deg)}
+.platy:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:4px}
+.platy.found{animation:platyFound .7s cubic-bezier(.3,1.6,.5,1) forwards;pointer-events:none}
+@keyframes platyFound{40%{transform:translateY(-24px) scale(1.7) rotate(-20deg)}100%{transform:translateY(-40px) scale(0) rotate(200deg);opacity:0}}
+.p-foot{position:absolute;right:6%;top:26px}
+.bauble{position:relative}
+.p-bauble{position:relative;align-self:flex-end;margin:0 0 2px -30px}
+.p-giant{position:absolute;left:calc(50% - 14px);top:24%}
+.p-ribbon{position:absolute;right:44px;top:290px}
+.cal-head{position:relative}
+.p-title{position:absolute;right:28px;top:-27px}
+.p-case0,.p-sunday{display:inline-block;margin-top:16px;width:64px;height:48px}
+.hunt{position:fixed;left:16px;bottom:16px;z-index:9;appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font:600 13px/1 'Inter Tight',sans-serif;padding:9px 14px 9px 10px;border-radius:999px;box-shadow:0 6px 20px #14141433;animation:stick .5s cubic-bezier(.3,1.6,.5,1)}
+.hunt[hidden]{display:none}
+.hunt .platy-ico{display:inline-block;width:30px;height:22px}
+.hunt .platy-ico svg,.hunt .platy-ico img{display:block;width:100%;height:100%;object-fit:contain}
+.hint{position:fixed;left:16px;bottom:62px;z-index:9;max-width:min(280px,calc(100vw - 32px));background:var(--paper);color:var(--ink);font:500 13px/1.4 'Inter Tight',sans-serif;padding:10px 14px;border-radius:14px;box-shadow:inset 0 0 0 1.5px var(--ink),4px 4px 0 var(--red);animation:stick .4s cubic-bezier(.3,1.6,.5,1)}
+.toast{position:fixed;right:20px;bottom:20px;z-index:9;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 40px);background:var(--green);color:var(--paper);font:600 14px/1.3 'Inter Tight',sans-serif;padding:10px 10px 10px 18px;border-radius:999px;rotate:-3deg;box-shadow:0 8px 24px #14141433;animation:stick .6s cubic-bezier(.3,1.6,.5,1) both}
+.toast button{appearance:none;border:0;flex:none;width:26px;height:26px;border-radius:50%;background:#ffffff26;color:inherit;font-size:16px;line-height:1;cursor:pointer}
+.slap{position:fixed;left:50%;top:45%;z-index:12;pointer-events:none;translate:-50% -50%;rotate:-8deg;white-space:nowrap;background:var(--red);color:var(--paper);font-family:Anton,sans-serif;font-size:clamp(36px,8vw,96px);text-transform:uppercase;padding:.1em .45em;border-radius:24px;box-shadow:8px 8px 0 var(--ink);animation:slap 2.8s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes slap{0%{scale:3;opacity:0}12%{scale:1;opacity:1}80%{scale:1;opacity:1}100%{scale:.9;opacity:0}}
+.fall{position:fixed;top:-60px;z-index:11;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(calc(100vh + 120px)) rotate(var(--rot,0deg))}}
+.fall.flake{color:#fff;text-shadow:0 0 3px #14141470}
+.fall.term{background:var(--paper);color:var(--red-d);font:700 14px/1 'Inter Tight',sans-serif;padding:7px 11px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--red)}
+.fall.conf{width:10px;height:14px;border-radius:2px}
+.parade{position:fixed;left:0;bottom:24px;z-index:12;pointer-events:none;width:140px;animation:parade 5s linear forwards}
+.parade svg,.parade img{display:block;width:140px;height:105px;animation:waddle .35s ease-in-out infinite alternate}
+.parade .crown{position:absolute;left:22%;top:-26px;font-size:30px;z-index:1}
+@keyframes parade{from{translate:-160px 0}to{translate:calc(100vw + 20px) 0}}
+@keyframes waddle{from{rotate:-4deg}to{rotate:4deg}}
+.bauble>svg{cursor:pointer}
+.bauble>svg.drop{animation:dropBall 1.2s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes dropBall{30%{translate:0 120px;rotate:20deg}55%{translate:0 88px}75%{translate:0 120px}100%{translate:0 0;rotate:0deg}}
+.logo .star{cursor:pointer;transition:rotate .9s cubic-bezier(.3,1.4,.5,1)}
+.s1{cursor:pointer;user-select:none}
+.foot-giant span{display:inline-block}
+.foot-giant:hover span{animation:hop .5s cubic-bezier(.3,1.6,.5,1);animation-delay:calc(var(--n)*50ms)}
+@keyframes hop{40%{translate:0 -12%}}
+.doors.wave>.door,.doors.wave>.xmas{animation:wave .7s ease-in-out;animation-delay:calc(var(--i,0)*40ms)}
+@keyframes wave{40%{translate:0 -18px}}
+body.xtreme .door{animation:wiggle .3s ease-in-out infinite alternate}
+body.xtreme .tag{animation:spin 1s linear infinite}
+@keyframes wiggle{from{rotate:-3deg}to{rotate:3deg}}
+@keyframes spin{to{rotate:360deg}}
+@media(prefers-reduced-motion:reduce){
+.fall,.parade,.slap{display:none}
+.foot-giant:hover span,.doors.wave>*,body.xtreme .door,body.xtreme .tag,.platy.found,.hunt,.hint,.toast{animation:none}
+.platy.found{opacity:0}.logo .star,.platy{transition:none}
+}
+@media(max-width:640px){
+.p-ribbon{right:14px;top:70px}
+.p-bauble{margin-left:-22px}
+.toast{right:12px;bottom:66px;font-size:13px}
 }
 
 /* Mobile */
@@ -186,7 +245,7 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 .simbar{padding:0 16px}
 .hero{padding:32px 16px 64px}.ribbon{width:300px;right:-110px;top:-70px}
 .hero-row{gap:28px}.s1{display:none}.s2{font-size:13px;bottom:-34px}
-.bauble svg{width:96px;height:auto}
+.bauble>svg{width:96px;height:auto}
 .cards{margin-top:56px;gap:16px}.status,.principle{padding:22px 24px;border-radius:22px}
 .cal{padding:0 12px 72px}.cal-head{margin-bottom:24px}
 .tag{display:none}.door{border-radius:12px;gap:3px;padding:4px}.lock{width:12px;height:12px}.wk{font-size:12px}
@@ -371,6 +430,228 @@ else {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { show1(e.target); io.unobserve(e.target); } }), {rootMargin: '0px 0px -12% 0px', threshold: .12});
   targets.forEach(t => io.observe(t));
 }
+})();
+
+/* ===== Easter eggs ===== */
+(function(){
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+const $ = s => document.querySelector(s);
+const PLATY = '<img src="ornithorynque.webp" alt="" draggable="false" width="480" height="360">';
+
+/* ---------- Effets réutilisables ---------- */
+function rain(n, make, dur){
+  if (RM.matches) return;
+  dur = dur || [4, 8];
+  for (let i = 0; i < n; i++) {
+    const el = make(i), d = dur[0] + Math.random() * (dur[1] - dur[0]);
+    el.classList.add('fall');
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = d + 's';
+    el.style.animationDelay = Math.random() * 2 + 's';
+    el.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+    document.body.append(el);
+    setTimeout(() => el.remove(), (d + 2.2) * 1000);
+  }
+}
+const span = (cls, txt) => { const s = document.createElement('span'); if (cls) s.className = cls; if (txt) s.textContent = txt; return s; };
+const snow = n => rain(n, () => { const s = span('flake', Math.random() < .5 ? '❄' : '•'); s.style.fontSize = (10 + Math.random() * 16) + 'px'; return s; });
+const confetti = () => rain(110, () => { const s = span('conf'); s.style.background = ['#E5401B','#1E4A38','#141414','#F7B9A4','#FBF4EA'][Math.floor(Math.random() * 5)]; return s; }, [2.5, 5]);
+const terms = () => rain(18, i => span('term', ['14quater','art. 16','code 531','art. 14a','code 577','art. 15','code 579','MR','FPra'][i % 9]), [3.5, 6]);
+function parade(crown){
+  if (RM.matches) return;
+  const p = document.createElement('div'); p.className = 'parade';
+  p.innerHTML = (crown ? '<span class="crown">👑</span>' : '') + PLATY;
+  document.body.append(p); setTimeout(() => p.remove(), 5200);
+}
+function slap(t){
+  if (RM.matches) return;
+  const s = document.createElement('div'); s.className = 'slap'; s.textContent = t;
+  document.body.append(s); setTimeout(() => s.remove(), 2900);
+}
+function toast(msg){
+  const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status');
+  t.innerHTML = '<span></span><button type="button" aria-label="Fermer">×</button>';
+  t.firstChild.textContent = msg; t.querySelector('button').onclick = () => t.remove();
+  document.body.append(t); setTimeout(() => t.remove(), 9000);
+}
+function card(icon, eyebrow, title, text, source){
+  modal.hidden = false;
+  modal.innerHTML = '<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift"></div><div class="eyebrow"></div><h2></h2><p></p>' + (source ? '<div class="source"></div>' : '') + '</article>';
+  const c = modal.querySelector('.card');
+  c.querySelector('.gift').textContent = icon; c.querySelector('.eyebrow').textContent = eyebrow;
+  c.querySelector('h2').textContent = title; c.querySelector('p').textContent = text;
+  if (source) c.querySelector('.source').textContent = source;
+  c.querySelector('.close').onclick = close;
+  return c;
+}
+
+/* ---------- 1. Chasse aux ornithorynques ---------- */
+const HKEY = 'rea-avent-2026-ornithos';
+const SPOTS = {
+  foot: 'Là où tout se termine, tout en bas.',
+  bauble: 'Caché au pied d’une décoration qui se balance.',
+  giant: 'Coincé entre deux lettres géantes.',
+  ribbon: 'Il fait du toboggan sur le ruban.',
+  title: 'Perché au-dessus des 23 cases.',
+  case0: 'Dans une case qui n’existe pas… un lundi.',
+  sunday: 'Il aime lire les fiches du dimanche.'
+};
+const TOTAL = Object.keys(SPOTS).length;
+let found; try { found = new Set(JSON.parse(localStorage.getItem(HKEY) || '[]')); } catch (e) { found = new Set(); }
+const saveH = () => { try { localStorage.setItem(HKEY, JSON.stringify([...found])); } catch (e) {} };
+
+const hunt = document.createElement('button');
+hunt.type = 'button'; hunt.className = 'hunt'; hunt.hidden = true;
+hunt.title = 'Chasse aux ornithorynques : cliquez pour un indice';
+document.body.append(hunt);
+function updHunt(){
+  hunt.hidden = !found.size;
+  hunt.innerHTML = '<span class="platy-ico">' + PLATY + '</span>' + found.size + '/' + TOTAL;
+  hunt.setAttribute('aria-label', 'Ornithorynques trouvés : ' + found.size + ' sur ' + TOTAL + '. Afficher un indice');
+}
+updHunt();
+let hintEl;
+hunt.onclick = () => {
+  const left = Object.keys(SPOTS).filter(k => !found.has(k));
+  if (hintEl) hintEl.remove();
+  hintEl = document.createElement('div'); hintEl.className = 'hint'; hintEl.setAttribute('role', 'status');
+  hintEl.textContent = left.length ? 'Indice : ' + SPOTS[left[Math.floor(Math.random() * left.length)]] : 'Tous trouvés ! Vous êtes officiellement expert·e 🎓';
+  document.body.append(hintEl); const h = hintEl; setTimeout(() => h.remove(), 5000);
+};
+function diploma(){
+  confetti();
+  card('🎓', TOTAL + '/' + TOTAL + ' · Chasse terminée', 'Diplôme d’Expert·e certifié·e en ornithorynques',
+    'Vous avez retrouvé les ' + TOTAL + ' ornithorynques cachés. Mammifère, ovipare, venimeux et désormais mascotte de la REA : il n’a plus de secret pour vous.\n\nMerci pour votre curiosité, et de belles fêtes de la part de toute l’équipe ! 🦆🎄',
+    'Décerné par l’équipe REA · Décembre 2026');
+}
+function platy(id, parent, first){
+  if (found.has(id) || !parent) return null;
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'platy p-' + id; b.setAttribute('aria-label', 'Un ornithorynque caché !'); b.innerHTML = PLATY;
+  b.onclick = e => {
+    e.stopPropagation();
+    if (found.has(id)) return;
+    found.add(id); saveH(); updHunt();
+    b.classList.add('found'); setTimeout(() => b.remove(), 750);
+    if (found.size === TOTAL) setTimeout(diploma, 800);
+  };
+  first ? parent.insertBefore(b, parent.firstChild) : parent.append(b);
+  return b;
+}
+platy('foot', $('.foot'));
+platy('bauble', $('.bauble'));
+const giant = $('.foot-giant');
+if (giant) {
+  giant.innerHTML = [...giant.textContent].map((c, i) => c === ' ' ? ' ' : '<span style="--n:' + i + '">' + c + '</span>').join('');
+  platy('giant', giant);
+}
+platy('ribbon', $('.hero'), true);
+platy('title', $('.cal-head'));
+
+/* ---------- 2. Fiches : ornithorynque du dimanche, case verrouillée insistante, finale ---------- */
+let lockK = 0, lockN = 0, finaleDemo = false;
+function checkFinale(){
+  if (opened().size < 23) return;
+  if (demo) { if (finaleDemo) return; finaleDemo = true; }
+  else { try { if (localStorage.getItem('rea-avent-2026-finale')) return; localStorage.setItem('rea-avent-2026-finale', '1'); } catch (e) {} }
+  setTimeout(() => { confetti(); parade(true); slap('23/23 🎉'); }, 700);
+}
+const prevShow = show;
+show = function(k, locked){
+  prevShow(k, locked);
+  const c = modal.querySelector('.card'); if (!c) return;
+  if (locked) {
+    lockN = lockK === k ? lockN + 1 : 1; lockK = k;
+    if (lockN >= 5) {
+      lockN = 0;
+      c.querySelector('h2').textContent = 'Tu ne lâches rien !';
+      c.querySelector('p').textContent = 'La persévérance, c’est déjà de la réadaptation 💪\nMais cette case reste fermée jusqu’au ' + k + ' décembre.';
+    }
+  } else {
+    lockK = 0; lockN = 0;
+    if (k % 7 === 6) platy('sunday', c);
+    checkFinale();
+  }
+};
+
+/* ---------- 3. Case 0 : la case vide du lundi ---------- */
+doors.addEventListener('click', e => {
+  if (e.target !== doors.firstElementChild) return;
+  const c = card('🕳️', 'Jour 0 · Case secrète', 'Le calendrier de l’Avent du calendrier de l’Avent',
+    'Bravo, vous avez trouvé la case 0 ! Elle ne contient rien de professionnel… sauf peut-être un petit visiteur.');
+  platy('case0', c);
+});
+
+/* ---------- 4. Boule de Noël : 5 clics ---------- */
+const bsvg = $('.bauble>svg'); let bN = 0, bT;
+if (bsvg) bsvg.addEventListener('click', () => {
+  bN++; clearTimeout(bT); bT = setTimeout(() => bN = 0, 1500);
+  if (bN < 5) { bsvg.animate([{scale: 1}, {scale: 1.08}, {scale: 1}], {duration: 200}); return; }
+  bN = 0;
+  if (!RM.matches) { bsvg.classList.add('drop'); setTimeout(() => bsvg.classList.remove('drop'), 1300); }
+  setTimeout(() => parade(false), 400);
+});
+
+/* ---------- 5. Astérisque du logo : neige ---------- */
+const star = $('.logo svg'); let rot = 0;
+if (star) { star.classList.add('star'); star.addEventListener('click', () => { rot += 360; star.style.rotate = rot + 'deg'; snow(70); }); }
+
+/* ---------- 6. Autocollant qui change de texte ---------- */
+const s1 = $('.s1');
+const TX = ['fait main, avec amour', 'fait main, avec café ☕', 'relu trois fois', 'approuvé par l’ornithorynque', 'sans paperasse (ou presque)', 'garanti sans code 531'];
+let si = 0;
+if (s1) s1.addEventListener('click', () => { si = (si + 1) % TX.length; s1.textContent = TX[si]; s1.animate([{scale: 1.25}, {scale: 1}], {duration: 350, easing: 'cubic-bezier(.3,1.6,.5,1)'}); });
+
+/* ---------- 7. Codes clavier ---------- */
+const KON = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let kp = 0, buf = '';
+function xtreme(){ document.body.classList.add('xtreme'); snow(120); slap('Mode Noël extrême 🎄'); setTimeout(() => document.body.classList.remove('xtreme'), 8000); }
+function wave(){ doors.classList.remove('wave'); void doors.offsetWidth; doors.classList.add('wave'); setTimeout(() => doors.classList.remove('wave'), 2200); }
+document.addEventListener('keydown', e => {
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable) || e.ctrlKey || e.metaKey || e.altKey) return;
+  const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+  kp = key === KON[kp] ? kp + 1 : (key === KON[0] ? 1 : 0);
+  if (kp === KON.length) { kp = 0; xtreme(); }
+  if (e.key.length === 1) {
+    buf = (buf + e.key.toUpperCase()).slice(-12);
+    if (buf.endsWith('LAI')) terms();
+    if (buf.endsWith('ANDIAMO')) slap('Andiamo ! 🇮🇹');
+    if (buf.endsWith('NOEL') || buf.endsWith('NOËL')) wave();
+  }
+});
+
+/* ---------- 8. Saint-Nicolas et messages selon l'heure ---------- */
+function stNicolas(){ toast('Joyeuse Saint-Nicolas ! 🍊'); rain(40, () => { const s = span('', Math.random() < .6 ? '🍊' : '🍪'); s.style.fontSize = (18 + Math.random() * 14) + 'px'; return s; }, [4, 7]); }
+const now = new Date();
+const isNico = now.getFullYear() === 2026 && now.getMonth() === 11 && now.getDate() === 6;
+if (isNico) setTimeout(stNicolas, 1500);
+let nicoDone = false;
+slider.addEventListener('input', () => { if (demo && day === 6 && !nicoDone) { nicoDone = true; stNicolas(); } });
+(function(){
+  if (isNico) return;
+  try { if (sessionStorage.getItem('rea-avent-toast')) return; sessionStorage.setItem('rea-avent-toast', '1'); } catch (e) {}
+  const h = now.getHours() + now.getMinutes() / 60, dow = now.getDay();
+  let m = '';
+  if (h >= 12 && h < 13.5) m = 'Bon appétit ! 🍝';
+  else if (dow === 5 && h >= 14 && h < 18) m = 'Bon week-end ! Les surprises du samedi vous attendent 😄';
+  else if (h >= 18 || h < 6) m = 'Il est tard… les dossiers attendront demain 🌙';
+  if (m) setTimeout(() => toast(m), 2500);
+})();
+
+/* ---------- 9. Pour les curieux de la console ---------- */
+console.log('%c' + [
+  '         ___',
+  '    ____/ o \\________',
+  '   /    \\___/========>',
+  '  (   ~~~~~~~~~   )',
+  '   \\_____________/~~~',
+  '      ^^      ^^'
+].join('\n') + '\n\n%cTiens, tu fouilles dans le code ? 🦆\n' + TOTAL + ' ornithorynques sont cachés sur cette page… mais pas dans la console !',
+  'color:#8a5a2b;font-family:monospace', 'color:#E5401B;font-weight:bold;font-size:13px');
+
+/* Accès pour les tests */
+window.__eggs = {snow, confetti, terms, parade, slap, toast, xtreme, wave, stNicolas, diploma};
 })();
 </script>
 </body></html>
