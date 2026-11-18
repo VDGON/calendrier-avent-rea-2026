@@ -110,7 +110,8 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 
 /* ===== Animations ===== */
 .page{overflow:visible;overflow-x:clip}
-.cal{position:relative}
+.cal{position:relative;z-index:1}
+.ribbon{z-index:0}.hero-row,.cards{z-index:1}
 /* En-tête collant */
 @media(min-width:641px){.top{position:sticky;top:0;z-index:5;background:var(--cream);transition:box-shadow .3s}.top.scrolled{box-shadow:0 1px 0 #14141420}}
 .js .top>*{animation:drop .7s cubic-bezier(.2,.8,.2,1) both}
@@ -191,7 +192,7 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 <span id="status" class="sr" aria-live="polite"></span>
 
 <section class="hero">
-  <svg class="ribbon" aria-hidden="true" viewBox="0 0 600 1180" fill="none"><path d="M560 -20C600 140 420 160 360 260C300 360 470 420 420 520C380 600 250 560 230 640C205 730 120 770 150 880C180 990 400 1000 450 1150" stroke="#E5401B" stroke-width="58" stroke-linecap="round"/></svg>
+  <svg class="ribbon" aria-hidden="true" viewBox="0 0 600 700" fill="none"><path d="M560 -20C600 140 420 160 360 260C300 360 470 420 420 520C380 600 250 560 230 640" stroke="#E5401B" stroke-width="58" stroke-linecap="round"/></svg>
   <div class="hero-row">
     <div class="hero-title">
       <p class="kicker">Calendrier de l’Avent · 2026</p>
