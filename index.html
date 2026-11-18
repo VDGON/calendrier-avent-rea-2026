@@ -1,5 +1,312 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calendrier de l'Avent REA 2026</title><style>
-:root{font-family:Arial,sans-serif;color:#24342f;background:#f6f3eb}*{box-sizing:border-box}body{margin:0;padding:22px}.wrap{max-width:920px;margin:auto}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.controls button{border:1px solid #bbb;border-radius:9px;background:white;padding:10px 14px;cursor:pointer}.controls button.active{background:#d7e8dc;border-color:#37765d}.controls label{font-size:13px}.controls input{accent-color:#39785f}.scene{position:relative;overflow:hidden;border-radius:20px;padding:28px 22px 34px;background:radial-gradient(ellipse at 50% 0%,#315a56,#153e3c 50%,#0c282a);box-shadow:0 14px 35px #142f2940}.scene:before{content:'✦    ✧     ✦     ❄     ✧     ✦     ✧';display:block;text-align:center;color:#dfc98c;letter-spacing:12px;opacity:.75}.heading{text-align:center;color:#fff4dc;margin:18px 0 25px}.heading h1{font:normal clamp(28px,5vw,43px) Georgia,serif;margin:5px 0}.heading p{color:#dfc98c;letter-spacing:2px;font-size:12px}.weekdays,.doors{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}.weekdays{color:#e7d7a9;text-align:center;font-size:12px;margin-bottom:9px}.doors button{min-width:0;aspect-ratio:1/1.12;border-radius:9px;border:1px solid #d4b87877;color:#fce9ba;background:linear-gradient(145deg,#32655e,#1d4642);cursor:pointer;position:relative;box-shadow:inset 0 0 0 3px #173e3970,0 3px 7px #061d1b55;transition:transform .2s,box-shadow .2s}.doors button:nth-child(4n+2){background:linear-gradient(145deg,#a34b47,#713532)}.doors button:nth-child(5n+3){background:linear-gradient(145deg,#9c7843,#6c512e)}.doors button.sunday{border:2px solid #ffe4a2;box-shadow:0 0 0 2px #ffe4a233}.doors button.saturday{border:2px solid #d7b976}.doors button:hover{transform:translateY(-4px);box-shadow:0 9px 19px #061d1b99}.doors button.locked{opacity:.6;filter:saturate(.6)}.doors button.opened{background:linear-gradient(145deg,#f1dca5,#cda85c);color:#493d26}.doors .number{font:normal clamp(20px,3vw,34px) Georgia,serif}.doors .symbol{display:block;font-size:16px;margin-top:5px}.doors .corner{position:absolute;right:7px;top:6px;font-size:11px}.foot{text-align:center;color:#e8d8b2;margin-top:20px;font-size:12px}.countdown{text-align:center;color:#fff4dc;background:#ffffff12;border:1px solid #dfc98c66;border-radius:12px;padding:12px 16px;margin:-8px auto 22px;max-width:520px;font:normal 17px Georgia,serif}.countdown strong{color:#ffdb83;font-size:22px}.countdown[hidden]{display:none}.doors button.today{border:2px solid #ffdb83;box-shadow:0 0 0 3px #ffdb8355,0 0 22px #ffdb83aa;animation:glow 2.2s ease-in-out infinite;z-index:1}.doors .badge{position:absolute;left:50%;bottom:5px;transform:translateX(-50%);background:#ffdb83;color:#3b2f17;font:bold 9px Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:6px;white-space:nowrap}@keyframes glow{50%{box-shadow:0 0 0 5px #ffdb8333,0 0 32px #ffdb83dd}}@media(prefers-reduced-motion:reduce){.doors button.today,.card .gift{animation:none}}.note{font-size:12px;color:#686f69;margin:12px 0;line-height:1.5}.overlay{position:fixed;inset:0;background:#071b1bc9;display:flex;align-items:center;justify-content:center;padding:18px;z-index:10;animation:fade .2s}.overlay[hidden]{display:none}.card{position:relative;max-width:510px;width:100%;background:#fff8e9;border:2px solid #d8b66e;border-radius:16px;padding:32px 26px;text-align:center;box-shadow:0 18px 55px #0008;animation:pop .3s}.card h2{font:normal 26px Georgia,serif;color:#36372d}.card p{font-size:15px;line-height:1.65;white-space:pre-line}.card .eyebrow{font-size:11px;letter-spacing:2px;color:#93733c;text-transform:uppercase}.card .source{font-size:12px;color:#786e5a;margin-top:20px}.card .close{position:absolute;right:10px;top:6px;font-size:28px;background:transparent;border:0;cursor:pointer}.card .gift{font-size:34px;animation:float 2s infinite}.spark{position:fixed;pointer-events:none;z-index:11;animation:spark .85s forwards;color:#ffdb83;font-size:22px}@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}@keyframes fade{from{opacity:0}to{opacity:1}}@keyframes float{50%{transform:translateY(-5px)}}@keyframes spark{to{transform:translateY(-80px) rotate(90deg);opacity:0}}@media(max-width:550px){body{padding:8px}.scene{padding:18px 8px}.doors,.weekdays{gap:4px}.doors button{border-radius:5px}.doors .number{font-size:21px}.doors .symbol{font-size:12px}.weekdays{font-size:10px}.doors .badge{display:none}.countdown{font-size:15px}}
-</style></head><body><main class="wrap"><div class="controls"><button id="real" class="active">Mode réel</button><button id="demo">🔒 Mode démonstration</button><span id="sim" hidden><label for="day">Simulation : <strong id="label">7 décembre</strong></label> <input type="range" min="0" max="23" value="7" id="day"></span><span id="status" aria-live="polite"></span></div><section class="scene"><header class="heading"><div style="font-size:27px">✦ 🎄 ✦</div><h1>Les surprises de la REA</h1><p>CALENDRIER DE L’AVENT · 2026</p></header><div class="countdown" id="countdown" aria-live="polite" hidden></div><div class="weekdays"><span>LUN</span><span>MAR</span><span>MER</span><span>JEU</span><span>VEN</span><span>SAM</span><span>DIM</span></div><div class="doors" id="doors"></div><div class="foot">✧ Une surprise par jour, jusqu’au 23 décembre ✧</div></section><p class="note" id="note" hidden><strong>Version de démonstration :</strong> toutes les fenêtres sont accessibles en mode démo. Le curseur simule la date du jour (case mise en évidence). Les communications professionnelles sont placées les 1er, 2, 3, 4 et 7 décembre. La grille correspond aux vrais jours de décembre 2026.</p></main><div id="modal" class="overlay" hidden></div><script>
-const entries={1:['Le saviez-vous ? — Frais de transport et viatiques','Dans le cadre de l’art. 14quater LAI (code 577), les frais de transport et les viatiques peuvent être pris en charge pour des stages de deux semaines au maximum. Au-delà, le stage doit être transformé en mesure selon l’art. 14a ou 15 LAI, avec la possibilité d’un art. 14quater LAI (code 579). Le schéma « Viatiques et frais de transport » a été adapté.','Communication Experts ANDIAMO n° 2'],2:['Le saviez-vous ? — Indemnisation de l’employeur','Dans le cadre d’une formation professionnelle initiale (art. 16 LAI), l’employeur peut être dédommagé pour un surcroît de travail considérable : suivi intensif, adaptation des processus ou encadrement spécifique. Cette indemnisation repose sur l’art. 14quater LAI.','Communication Experts ANDIAMO n° 6'],3:['Le saviez-vous ? — Multicheck','L’AI peut financer un Multicheck sous le code 531 (569 dans l’IP) pour préciser le niveau de formation ou vérifier l’adéquation du métier avec les capacités de l’assuré. S’il sert seulement à améliorer les chances de décrocher un apprentissage, il reste à la charge de l’assuré. Une communication 531 peut être établie en parallèle d’une MR ou d’un art. 14quater LAI. En principe, pas de financement en parallèle d’une mesure d’orientation, qui prévoit déjà des évaluations.','Communication Experts ANDIAMO n° 7'],4:['Le saviez-vous ? — Frais supplémentaires','Dans le cadre de l’art. 16 LAI, les frais supplémentaires sont calculés sur l’ensemble de la formation. Pour être reconnus, ils doivent dépasser CHF 400.– par année en moyenne sur toute sa durée.','Communication Experts ANDIAMO n° 9'],7:['Les projets en cours chez les Experts REA','• Simplification du processus FPra.\n• Valorisation des frais de transport et viatiques en préparation ciblée.\n• Réflexion sur les débouchés auprès des prestataires.\n• Mesures d’instruction, notamment le COPAI de Morges.\n• Formation SREN sur les mesures REA.\nEt d’autres projets à venir !',''],5:['La blague du samedi','Pourquoi le calendrier de l’Avent est-il un excellent gestionnaire de dossiers ?\n\nParce qu’il ouvre exactement un dossier par jour ! 😄',''],6:['L’ornithorynque du dimanche 🦆','L’ornithorynque est un mammifère… qui pond des œufs ! Avec son bec de canard, sa queue de castor et ses pattes palmées, il ne rentre dans aucune case. Même pas besoin d’un plan comparatif !',''],12:['La blague du samedi','Pourquoi le sapin est-il si calme en réunion ? Parce qu’il garde toujours ses aiguilles pour lui ! 🎄',''],19:['La blague du samedi','Pourquoi les lutins aiment-ils les tableaux de suivi ? Parce que tout y est bien emballé ! 🎁',''],13:['L’ornithorynque du dimanche 🦆','Le mâle possède des éperons venimeux sur les pattes arrière. Une particularité surprenante pour un mammifère !',''],20:['L’ornithorynque du dimanche 🦆','Grâce à son bec, l’ornithorynque détecte les faibles signaux électriques produits par les muscles de ses proies sous l’eau.','']};let demo=false,unlocked=false,day=7;const PASS_HASH='cbc7d306e990ca75dddfbec477aae499a46c548b0776f1cc77c8bdb7386e6655';async function sha256(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}const KEY='rea-avent-2026-ouvertes';let seen;try{seen=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'))}catch(e){seen=new Set()}const seenDemo=new Set();function opened(){return demo?seenDemo:seen}function save(){try{localStorage.setItem(KEY,JSON.stringify([...seen]))}catch(e){}}function today(){if(demo)return day;const d=new Date();return d.getFullYear()===2026&&d.getMonth()===11&&d.getDate()<=23?d.getDate():0}function countdown(){const c=document.getElementById('countdown');const n=Math.ceil((new Date(2026,11,1)-new Date())/864e5);if(demo||n<=0){c.hidden=true;return}c.hidden=false;c.innerHTML=n===1?'🎄 Le calendrier ouvre ses portes <strong>demain</strong> !':'🎄 Le calendrier ouvre ses portes dans <strong>'+n+' jours</strong>'}const doors=document.getElementById('doors'),modal=document.getElementById('modal'),slider=document.getElementById('day');function actual(){const d=new Date();if(d.getFullYear()<2026||d.getFullYear()===2026&&d.getMonth()<11)return 0;if(d.getFullYear()>2026||d.getMonth()>11)return 23;return Math.min(23,d.getDate())}function allowed(k){return demo||k<=actual()}function render(){doors.innerHTML='<span aria-hidden="true"></span>';for(let k=1;k<=23;k++){const b=document.createElement('button');const isSun=k%7===6,isSat=k%7===5,ok=allowed(k),isToday=k===today(),o=opened();b.className=(isSun?'sunday ':isSat?'saturday ':'')+(!ok?'locked ':'')+(isToday?'today ':'')+(o.has(k)?'opened':'');b.setAttribute('aria-label','Jour '+k+(isToday?', aujourd’hui':'')+(isSun?', anecdote du dimanche':'')+(ok?', accessible':', verrouillé')+(o.has(k)?', déjà ouverte':''));b.innerHTML='<span class="corner">'+(o.has(k)?'✓':ok?'✧':'⌑')+'</span><span class="number">'+k+'</span><span class="symbol">'+(isSun?'🦆':isSat?'😄':ok?'✦':'🔒')+'</span>'+(isToday?'<span class="badge">Aujourd’hui</span>':'');b.onclick=()=>{if(!ok)return show(k,true);o.add(k);if(!demo)save();show(k,false);render()};doors.appendChild(b)}countdown();document.getElementById('status').textContent=demo?'Toutes les fenêtres sont ouvertes en démo':'Ouverture selon la date réelle';document.getElementById('label').textContent=day===0?'Avant décembre':day+' décembre';document.getElementById('sim').hidden=!demo;document.getElementById('note').hidden=!demo}function show(k,locked){let e=entries[k]||['Surprise à venir','Cette fenêtre attend encore sa communication professionnelle.',''];if(locked)e=['Encore un peu de patience !','Cette fenêtre sera disponible à partir du '+k+' décembre.',''];modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">'+(locked?'🔒':'🎁')+'</div><div class="eyebrow">Jour '+k+(k%7===6?' · Dimanche':k%7===5?' · Samedi':' · La minute REA')+'</div><h2></h2><p></p><div class="source"></div></article>';modal.querySelector('h2').textContent=e[0];modal.querySelector('p').textContent=e[1];modal.querySelector('.source').textContent=e[2]?'Source : '+e[2]:'';modal.querySelector('.close').onclick=close;if(!locked)for(let i=0;i<12;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.left=(25+Math.random()*50)+'%';s.style.top=(40+Math.random()*25)+'%';document.body.append(s);setTimeout(()=>s.remove(),950)}}function close(){modal.hidden=true;modal.innerHTML=''}modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});function askPassword(){modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">🔒</div><div class="eyebrow">Accès réservé</div><h2>Mode démonstration</h2><form><p><label for="pw">Mot de passe :</label><br><input type="password" id="pw" autocomplete="off" style="margin-top:8px;padding:9px 12px;border:1px solid #d8b66e;border-radius:8px;font-size:15px;width:min(260px,100%)"></p><p class="err" style="color:#a34b47;min-height:1.5em;margin:0;font-size:13px"></p><button type="submit" style="margin-top:10px;padding:10px 18px;border-radius:9px;border:1px solid #37765d;background:#d7e8dc;cursor:pointer;font-size:14px">Déverrouiller</button></form></article>';modal.querySelector('.close').onclick=close;const pw=modal.querySelector('#pw');pw.focus();modal.querySelector('form').onsubmit=async ev=>{ev.preventDefault();if(await sha256(pw.value)===PASS_HASH){unlocked=true;document.getElementById('demo').textContent='Mode démonstration';close();enableDemo()}else{modal.querySelector('.err').textContent='Mot de passe incorrect.';pw.select()}}}document.getElementById('demo').onclick=()=>{unlocked?enableDemo():askPassword()};function enableDemo(){demo=true;document.getElementById('demo').classList.add('active');document.getElementById('real').classList.remove('active');slider.disabled=false;render()};document.getElementById('real').onclick=()=>{demo=false;document.getElementById('real').classList.add('active');document.getElementById('demo').classList.remove('active');slider.disabled=true;render()};slider.oninput=()=>{day=+slider.value;render()};render();
-</script></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calendrier de l'Avent REA 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+:root{--cream:#F4ECE2;--paper:#FBF4EA;--red:#E5401B;--red-d:#B82A0A;--green:#1E4A38;--ink:#141414}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter Tight',Arial,sans-serif}
+a{color:var(--ink)}
+.page{position:relative;overflow:hidden}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+/* En-tête */
+.top{position:relative;z-index:2;max-width:1360px;margin:0 auto;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.modes{display:flex;gap:8px;flex-wrap:wrap}
+.pill{appearance:none;border:0;cursor:pointer;font:600 14px/1 'Inter Tight',sans-serif;padding:0 18px;height:44px;border-radius:999px;background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);display:inline-flex;align-items:center;gap:8px}
+.pill.active{background:var(--ink);color:var(--paper)}
+.logo{font-family:Anton,sans-serif;font-size:30px;letter-spacing:.02em;color:var(--red);display:flex;align-items:center;gap:10px}
+.top-right{display:flex;align-items:center;gap:20px}
+.top-right .when{font-size:12px;font-weight:600;line-height:1.3}
+.cta{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0 6px 0 20px;border-radius:999px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:14px;font-weight:600}
+.cta>span{width:32px;height:32px;border-radius:50%;background:var(--red);display:inline-flex;align-items:center;justify-content:center;transition:transform .3s}
+.cta:hover>span{transform:rotate(45deg)}
+.pill:focus-visible,.door:focus-visible,.cta:focus-visible,.card button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.simbar{position:relative;z-index:2;max-width:1360px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:14px;font-weight:600}
+.simbar[hidden]{display:none}
+.simbar input{accent-color:var(--red);width:min(260px,100%)}
+
+/* Hero */
+.hero{position:relative;max-width:1360px;margin:0 auto;padding:56px 24px 96px}
+.ribbon{position:absolute;right:-120px;top:-140px;width:560px;height:auto;pointer-events:none}
+.hero-row{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;gap:48px}
+.hero-title{flex:999 1 640px;min-width:0;position:relative}
+.kicker{margin:0 0 20px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h1{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(52px,11.5vw,176px);line-height:.86;letter-spacing:-.01em;text-transform:uppercase;color:var(--red)}
+.sticker{position:absolute;background:var(--ink);color:var(--paper);font-size:15px;font-weight:600;padding:9px 16px;border-radius:999px;white-space:nowrap}
+.s1{left:46%;top:44%;transform:rotate(-7deg)}
+.s2{left:2%;bottom:-26px;transform:rotate(5deg);background:var(--green)}
+.bauble{flex:1 1 300px;display:flex;align-items:flex-end}
+.cards{position:relative;margin-top:72px;display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+.status{flex:1 1 420px;background:var(--ink);color:var(--paper);border-radius:28px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.status .k{color:#F7B9A4}
+.status-sub{margin-top:8px;font-size:16px;font-weight:500}
+.status-big{font-family:Anton,sans-serif;font-size:clamp(48px,7vw,96px);line-height:.9;color:var(--red);text-transform:uppercase}
+.principle{flex:1 1 300px;background:var(--cream);border-radius:28px;padding:28px 32px;box-shadow:inset 0 0 0 2px var(--ink);display:flex;flex-direction:column;justify-content:center;gap:8px}
+.principle .t{font-size:20px;font-weight:600;line-height:1.25}
+.principle .w{font-size:14px;font-weight:500;line-height:1.4}
+
+/* Calendrier */
+.cal{max-width:1360px;margin:0 auto;padding:0 24px 120px}
+.cal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-top:1.5px solid var(--red);padding-top:14px;margin-bottom:40px}
+h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40px,6vw,88px);line-height:.9;text-transform:uppercase;color:var(--red)}
+.weekdays,.doors{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(6px,1.4vw,20px)}
+.weekdays{margin-bottom:clamp(6px,1.4vw,20px)}
+.weekdays span{text-align:center;font-size:12px;font-weight:700;letter-spacing:.08em}
+.door{appearance:none;border:0;font:inherit;cursor:pointer;position:relative;aspect-ratio:1/1.08;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;min-width:0;transition:transform .35s cubic-bezier(.3,1.6,.5,1),box-shadow .2s}
+.door:hover:not(.locked){transform:rotate(-3deg) translateY(-6px)}
+.door.locked{cursor:not-allowed}
+.v-red{background:var(--red);color:var(--paper)}
+.v-green{background:var(--green);color:var(--paper)}
+.v-line{background:transparent;color:var(--red-d);box-shadow:inset 0 0 0 2.5px var(--red)}
+.v-ink{background:var(--ink);color:var(--paper)}
+.v-open{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 2.5px var(--ink)}
+.door.today{box-shadow:0 0 0 4px var(--cream),0 0 0 7px var(--red)}
+.door.v-line.today{box-shadow:inset 0 0 0 2.5px var(--red),0 0 0 4px var(--cream),0 0 0 7px var(--red)}
+.door.v-open.today{box-shadow:inset 0 0 0 2.5px var(--ink),0 0 0 4px var(--cream),0 0 0 7px var(--red)}
+.num{font-family:Anton,sans-serif;font-size:clamp(26px,5.6vw,86px);line-height:.9;letter-spacing:-.01em}
+.icons{display:flex;align-items:center;gap:6px;line-height:1}
+.wk{font-size:clamp(14px,2vw,26px)}
+.lock{width:18px;height:18px;opacity:.8}
+.tag{position:absolute;top:-10px;right:-6px;z-index:1;transform:rotate(8deg);background:var(--ink);color:var(--paper);font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;border-radius:999px;white-space:nowrap}
+.v-ink .tag,.today .tag{background:var(--red)}
+.dlabel{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red-d)}
+.dkind{font-family:Anton,sans-serif;font-size:clamp(14px,2.1vw,30px);line-height:1;text-transform:uppercase;text-align:center}
+.xmas{grid-column:span 4;border-radius:22px;background:var(--green);color:var(--paper);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:clamp(12px,2.4vw,36px)}
+.xmas svg{position:absolute;inset:0;width:100%;height:100%}
+.xmas>div{position:relative}
+.xmas .t{font-family:Anton,sans-serif;font-size:clamp(28px,5vw,76px);line-height:.9;text-transform:uppercase}
+.note{margin:32px 0 0;font-size:13px;line-height:1.55;max-width:760px}
+
+/* Pied de page */
+.foot{position:relative;background:var(--red);color:var(--paper);overflow:hidden}
+.foot>svg{position:absolute;inset:0;width:100%;height:100%}
+.foot-row{position:relative;max-width:1360px;margin:0 auto;padding:72px 24px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px}
+.foot-big{margin:0;flex:1 1 520px;font-size:clamp(30px,4.4vw,60px);font-weight:700;line-height:1.02;letter-spacing:-.02em}
+.foot-meta{flex:0 1 260px;font-size:14px;font-weight:600;line-height:1.5}
+.foot-meta .k{opacity:.75}
+.foot-giant{position:relative;font-family:Anton,sans-serif;font-size:clamp(110px,27vw,400px);line-height:.78;text-align:center;padding-top:40px;margin-bottom:-.06em;letter-spacing:-.01em;white-space:nowrap}
+
+/* Fenêtre de contenu */
+.overlay{position:fixed;inset:0;background:#141414b8;display:flex;align-items:center;justify-content:center;padding:18px;z-index:10;animation:fade .2s}
+.overlay[hidden]{display:none}
+.card{position:relative;max-width:540px;width:100%;max-height:calc(100vh - 36px);overflow:auto;background:var(--paper);border-radius:28px;padding:34px 32px 30px;box-shadow:inset 0 0 0 2px var(--ink),10px 10px 0 var(--red);animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+.card .gift{font-size:34px;display:inline-block;animation:float 2s infinite}
+.card .eyebrow{display:table;margin-top:10px;background:var(--ink);color:var(--paper);font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:7px 11px;border-radius:999px;transform:rotate(-3deg)}
+.card h2{margin:16px 0 14px;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(28px,4vw,40px);line-height:.95;text-transform:uppercase;color:var(--red)}
+.card p{margin:0;font-size:16px;line-height:1.6;white-space:pre-line}
+.card .source{margin-top:20px;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--red-d)}
+.card .close{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;border:0;background:var(--ink);color:var(--paper);font-size:22px;line-height:1;cursor:pointer}
+.card form input{display:block;margin-top:10px;height:44px;padding:0 16px;border:0;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--ink);background:#fff;font:500 16px 'Inter Tight',sans-serif;width:min(300px,100%)}
+.card form button{margin-top:16px;height:44px;padding:0 22px;border:0;border-radius:999px;background:var(--ink);color:var(--paper);font:600 14px 'Inter Tight',sans-serif;cursor:pointer}
+.card .err{color:var(--red-d);font-size:13px;font-weight:600;min-height:1.4em;margin-top:8px}
+.spark{position:fixed;pointer-events:none;z-index:11;animation:spark .85s forwards;color:var(--red);font-size:22px}
+@keyframes pop{from{transform:scale(.85) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes float{50%{transform:translateY(-5px)}}
+@keyframes spark{to{transform:translateY(-80px) rotate(90deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.door,.cta>span{transition:none}.card,.overlay,.card .gift{animation:none}.spark{display:none}html{scroll-behavior:auto}}
+
+/* ===== Animations ===== */
+.page{overflow:visible;overflow-x:clip}
+.cal{position:relative}
+/* En-tête collant */
+@media(min-width:641px){.top{position:sticky;top:0;z-index:5;background:var(--cream);transition:box-shadow .3s}.top.scrolled{box-shadow:0 1px 0 #14141420}}
+.js .top>*{animation:drop .7s cubic-bezier(.2,.8,.2,1) both}
+.js .top>*:nth-child(2){animation-delay:.08s}.js .top>*:nth-child(3){animation-delay:.16s}
+@keyframes drop{from{opacity:0;translate:0 -16px}}
+/* Boutons : tache rouge qui part du curseur */
+.pill{position:relative;overflow:hidden;isolation:isolate;transition:color .25s}
+.pill::before{content:'';position:absolute;left:var(--x,50%);top:var(--y,50%);width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;background:var(--red);transform:scale(0);transition:transform .5s cubic-bezier(.3,.9,.3,1);z-index:-1}
+.pill:hover::before{transform:scale(1)}
+.pill:hover{color:var(--paper)}
+.cta{position:relative;overflow:hidden;isolation:isolate}
+.cta::before{content:'';position:absolute;right:6px;top:6px;width:32px;height:32px;border-radius:50%;background:var(--red);z-index:-1;transition:transform .5s cubic-bezier(.3,.9,.3,1)}
+.cta:hover::before{transform:scale(9)}
+/* Titres qui montent depuis un masque */
+.ln{display:block;overflow:hidden;padding-top:.1em;margin-top:-.1em}
+.ln>span{display:block}
+.js h1 .ln>span{animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+.js h1 .ln:nth-child(2)>span{animation-delay:.12s}
+@keyframes rise{from{translate:0 105%}}
+.js [data-lines]:not(.in) .ln>span{translate:0 105%}
+[data-lines] .ln>span{transition:translate 1s cubic-bezier(.2,.8,.2,1)}
+[data-lines] .ln:nth-child(2)>span{transition-delay:.1s}
+/* Autocollants qui se collent, boule qui se balance */
+.js .sticker{animation:stick .7s cubic-bezier(.3,1.6,.5,1) both}
+.js .s1{animation-delay:.75s}.js .s2{animation-delay:.9s}
+@keyframes stick{from{scale:0}}
+.bauble svg{transform-origin:50% 0;animation:swing 3.4s ease-in-out infinite}
+@keyframes swing{0%,100%{rotate:-6deg}50%{rotate:6deg}}
+/* Apparitions au défilement */
+[data-reveal]{transition:opacity .8s ease-out,translate .9s cubic-bezier(.2,.8,.2,1)}
+.js [data-reveal]:not(.in){opacity:0;translate:0 48px}
+.status[data-reveal]{transition-delay:.05s}.principle[data-reveal]{transition-delay:.15s}
+.js .foot-giant[data-reveal]:not(.in){opacity:1;translate:0 45%}
+.foot-giant[data-reveal]{transition-duration:.8s,1.2s}
+/* Cases qui arrivent en cascade */
+.js .doors:not(.played)>*{opacity:0}
+.doors.play>.door,.doors.play>.xmas{animation:doorIn .7s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--i,0)*35ms)}
+@keyframes doorIn{from{opacity:0;translate:0 40px;scale:.8}}
+.tag{transition:rotate .35s cubic-bezier(.3,1.6,.5,1),scale .35s cubic-bezier(.3,1.6,.5,1)}
+.door:hover:not(.locked) .tag{rotate:-14deg;scale:1.12}
+.card.flip{animation:none}
+@media(prefers-reduced-motion:reduce){
+.js .top>*,.js .sticker,.bauble svg,.js h1 .ln>span,.doors.play>*{animation:none!important}
+.js [data-reveal],.js [data-lines] .ln>span{transition:none!important;opacity:1!important;translate:none!important}
+.js .doors>*{opacity:1!important}
+.pill::before,.cta::before,.tag{transition:none}
+}
+
+/* Mobile */
+@media(max-width:640px){
+.top{padding:16px}.top-right .when{display:none}.logo{font-size:24px}
+.simbar{padding:0 16px}
+.hero{padding:32px 16px 64px}.ribbon{width:300px;right:-110px;top:-70px}
+.hero-row{gap:28px}.s1{display:none}.s2{font-size:13px;bottom:-34px}
+.bauble svg{width:96px;height:auto}
+.cards{margin-top:56px;gap:16px}.status,.principle{padding:22px 24px;border-radius:22px}
+.cal{padding:0 12px 72px}.cal-head{margin-bottom:24px}
+.tag{display:none}.door{border-radius:12px;gap:3px;padding:4px}.lock{width:12px;height:12px}.wk{font-size:12px}
+.dlabel{font-size:8px;letter-spacing:.02em}.dkind{font-size:11px}
+.weekdays span{font-size:10px;letter-spacing:.02em}.xmas{border-radius:12px}
+.foot-row{padding:48px 16px 0;gap:24px}
+.card{padding:28px 22px 24px;border-radius:22px;box-shadow:inset 0 0 0 2px var(--ink),6px 6px 0 var(--red)}
+}
+</style></head><body>
+<div class="page">
+<header class="top">
+  <div class="modes" role="group" aria-label="Mode d'ouverture">
+    <button id="real" class="pill active">Mode réel</button>
+    <button id="demo" class="pill">Mode démo <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+  </div>
+  <div class="logo"><span>REA</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4A38" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/></svg><span>26</span></div>
+  <div class="top-right">
+    <div class="when">1 → 23 décembre<br>Une case par jour</div>
+    <a class="cta" href="#calendrier">Voir le calendrier<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FBF4EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+  </div>
+</header>
+<div class="simbar" id="sim" hidden><label for="day">Simulation : <strong id="label">7 décembre</strong></label><input type="range" min="0" max="23" value="7" id="day"></div>
+<span id="status" class="sr" aria-live="polite"></span>
+
+<section class="hero">
+  <svg class="ribbon" aria-hidden="true" viewBox="0 0 600 1180" fill="none"><path d="M560 -20C600 140 420 160 360 260C300 360 470 420 420 520C380 600 250 560 230 640C205 730 120 770 150 880C180 990 400 1000 450 1150" stroke="#E5401B" stroke-width="58" stroke-linecap="round"/></svg>
+  <div class="hero-row">
+    <div class="hero-title">
+      <p class="kicker">Calendrier de l’Avent · 2026</p>
+      <h1><span class="ln"><span>Les surprises</span></span><span class="ln"><span>de la REA</span></span></h1>
+      <span class="sticker s1">fait main, avec amour</span>
+      <span class="sticker s2">édition Noël</span>
+    </div>
+    <div class="bauble">
+      <svg aria-hidden="true" width="150" height="190" viewBox="0 0 150 190" fill="none" stroke="#141414" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M75 4v26"/><rect x="58" y="30" width="34" height="20" rx="4" fill="#1E4A38"/><circle cx="75" cy="112" r="60" fill="#E5401B"/><path d="M22 96c18 10 38-10 53 0s36 12 53-2" stroke="#FBF4EA" stroke-width="7"/><path d="M20 128c20 8 36-8 55 2s36 8 55-2" stroke="#FBF4EA" stroke-width="7"/><path d="M44 74c6-8 14-12 22-14" stroke="#FBF4EA" stroke-width="5"/></svg>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="status" aria-live="polite" data-reveal>
+      <div><div class="k" id="statusLabel"></div><div class="status-sub" id="statusSub"></div></div>
+      <div class="status-big" id="statusBig"></div>
+    </div>
+    <div class="principle" data-reveal>
+      <div class="k">Le principe</div>
+      <div class="t">Une case s’ouvre chaque jour, du 1er au 23 décembre.</div>
+      <div class="w">Samedi : la blague 😄 · Dimanche : l’ornithorynque 🦆</div>
+    </div>
+  </div>
+</section>
+
+<section class="cal" id="calendrier">
+  <div class="cal-head"><div class="k">Le calendrier · décembre 2026</div><h2 class="big" data-lines><span class="ln"><span>23 cases à ouvrir</span></span></h2></div>
+  <div class="weekdays" aria-hidden="true"><span>LUN</span><span>MAR</span><span>MER</span><span>JEU</span><span>VEN</span><span>SAM</span><span>DIM</span></div>
+  <div class="doors" id="doors"></div>
+  <p class="note" id="note" hidden><strong>Version de démonstration :</strong> toutes les fenêtres sont accessibles en mode démo. Le curseur simule la date du jour (case mise en évidence). Les communications professionnelles sont placées les 1er, 2, 3, 4 et 7 décembre. La grille correspond aux vrais jours de décembre 2026.</p>
+</section>
+
+<footer class="foot">
+  <svg aria-hidden="true" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#FBF4EA" stroke-width="3" opacity=".14"><path d="M-40 120c120-80 160 80 80 100s-60-140 60-120 120 160 220 100-40-160 60-140 140 140 260 80 0-180 120-120 120 160 240 100 40-140 160-120 140 120 260 60"/><path d="M-40 380c140-60 160 100 60 120s-40-160 80-120 100 180 220 100-60-160 60-140 160 140 260 60 0-160 140-100 100 140 240 80 60-140 180-100 120 120 200 40"/></svg>
+  <div class="foot-row">
+    <p class="foot-big" data-reveal>Une surprise par jour,<br>jusqu’au 23 décembre.</p>
+    <div class="foot-meta"><div class="k">Calendrier de l’Avent</div><div>Les surprises de la REA</div><div>Édition 2026</div></div>
+  </div>
+  <div class="foot-giant" aria-hidden="true" data-reveal>REA 26</div>
+</footer>
+</div>
+<div id="modal" class="overlay" hidden></div>
+<script>document.documentElement.classList.add('js');
+const entries={1:['Le saviez-vous ? — Frais de transport et viatiques','Dans le cadre de l’art. 14quater LAI (code 577), les frais de transport et les viatiques peuvent être pris en charge pour des stages de deux semaines au maximum. Au-delà, le stage doit être transformé en mesure selon l’art. 14a ou 15 LAI, avec la possibilité d’un art. 14quater LAI (code 579). Le schéma « Viatiques et frais de transport » a été adapté.','Communication Experts ANDIAMO n° 2'],2:['Le saviez-vous ? — Indemnisation de l’employeur','Dans le cadre d’une formation professionnelle initiale (art. 16 LAI), l’employeur peut être dédommagé pour un surcroît de travail considérable : suivi intensif, adaptation des processus ou encadrement spécifique. Cette indemnisation repose sur l’art. 14quater LAI.','Communication Experts ANDIAMO n° 6'],3:['Le saviez-vous ? — Multicheck','L’AI peut financer un Multicheck sous le code 531 (569 dans l’IP) pour préciser le niveau de formation ou vérifier l’adéquation du métier avec les capacités de l’assuré. S’il sert seulement à améliorer les chances de décrocher un apprentissage, il reste à la charge de l’assuré. Une communication 531 peut être établie en parallèle d’une MR ou d’un art. 14quater LAI. En principe, pas de financement en parallèle d’une mesure d’orientation, qui prévoit déjà des évaluations.','Communication Experts ANDIAMO n° 7'],4:['Le saviez-vous ? — Frais supplémentaires','Dans le cadre de l’art. 16 LAI, les frais supplémentaires sont calculés sur l’ensemble de la formation. Pour être reconnus, ils doivent dépasser CHF 400.– par année en moyenne sur toute sa durée.','Communication Experts ANDIAMO n° 9'],7:['Les projets en cours chez les Experts REA','• Simplification du processus FPra.\n• Valorisation des frais de transport et viatiques en préparation ciblée.\n• Réflexion sur les débouchés auprès des prestataires.\n• Mesures d’instruction, notamment le COPAI de Morges.\n• Formation SREN sur les mesures REA.\nEt d’autres projets à venir !',''],5:['La blague du samedi','Pourquoi le calendrier de l’Avent est-il un excellent gestionnaire de dossiers ?\n\nParce qu’il ouvre exactement un dossier par jour ! 😄',''],6:['L’ornithorynque du dimanche 🦆','L’ornithorynque est un mammifère… qui pond des œufs ! Avec son bec de canard, sa queue de castor et ses pattes palmées, il ne rentre dans aucune case. Même pas besoin d’un plan comparatif !',''],12:['La blague du samedi','Pourquoi le sapin est-il si calme en réunion ? Parce qu’il garde toujours ses aiguilles pour lui ! 🎄',''],19:['La blague du samedi','Pourquoi les lutins aiment-ils les tableaux de suivi ? Parce que tout y est bien emballé ! 🎁',''],13:['L’ornithorynque du dimanche 🦆','Le mâle possède des éperons venimeux sur les pattes arrière. Une particularité surprenante pour un mammifère !',''],20:['L’ornithorynque du dimanche 🦆','Grâce à son bec, l’ornithorynque détecte les faibles signaux électriques produits par les muscles de ses proies sous l’eau.','']};let demo=false,unlocked=false,day=7;const PASS_HASH='cbc7d306e990ca75dddfbec477aae499a46c548b0776f1cc77c8bdb7386e6655';async function sha256(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}const KEY='rea-avent-2026-ouvertes';let seen;try{seen=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'))}catch(e){seen=new Set()}const seenDemo=new Set();function opened(){return demo?seenDemo:seen}function save(){try{localStorage.setItem(KEY,JSON.stringify([...seen]))}catch(e){}}function today(){if(demo)return day;const d=new Date();return d.getFullYear()===2026&&d.getMonth()===11&&d.getDate()<=23?d.getDate():0}function countdown(){const n=Math.ceil((new Date(2026,11,1)-new Date())/864e5),t=today();let a,b,c;if(demo){a='Mode démonstration';b='Toutes les cases peuvent être ouvertes. Simulation : '+(day===0?'avant décembre':day+' décembre')+'.';c='23 cases'}else if(n>0){a='Le calendrier ouvre ses portes dans';b='Rendez-vous le mardi 1er décembre.';c=n+(n>1?' jours':' jour')}else if(t){a='Case du jour';b='Ouvrez-la dans le calendrier ci-dessous.';c='N°'+t}else{a='Le calendrier est terminé';b='Merci et belles fêtes !';c='À l’an prochain'}document.getElementById('statusLabel').textContent=a;document.getElementById('statusSub').textContent=b;document.getElementById('statusBig').textContent=c}const doors=document.getElementById('doors'),modal=document.getElementById('modal'),slider=document.getElementById('day');function actual(){const d=new Date();if(d.getFullYear()<2026||d.getFullYear()===2026&&d.getMonth()<11)return 0;if(d.getFullYear()>2026||d.getMonth()>11)return 23;return Math.min(23,d.getDate())}function allowed(k){return demo||k<=actual()}const V=['v-red','v-line','v-green','v-ink','v-line','v-red','v-green'];const LOCK='<svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';const XMAS='<div class="xmas" aria-hidden="true" style="--i:24"><svg viewBox="0 0 400 200" preserveAspectRatio="none" fill="none"><path d="M-20 160C60 60 120 220 200 120S330 40 420 90" stroke="#E5401B" stroke-width="22" stroke-linecap="round" opacity=".9"/></svg><div class="k">Et le 24 ?</div><div class="t">Joyeux Noël</div></div>';function kind(k){if(k%7===5)return'Blague 😄';if(k%7===6)return'Ornitho 🦆';const e=entries[k];if(!e)return'Surprise';if(e[0].startsWith('Le saviez-vous'))return'Le saviez-vous ?';if(k===7)return'Projets REA';return'Surprise'}function render(){doors.innerHTML='<span aria-hidden="true"></span>';for(let k=1;k<=23;k++){const b=document.createElement('button');const isSun=k%7===6,isSat=k%7===5,ok=allowed(k),isToday=k===today(),o=opened();b.className=(isSun?'sunday ':isSat?'saturday ':'')+(!ok?'locked ':'')+(isToday?'today ':'')+(o.has(k)?'opened':'');b.setAttribute('aria-label','Jour '+k+(isToday?', aujourd’hui':'')+(isSun?', anecdote du dimanche':'')+(ok?', accessible':', verrouillé')+(o.has(k)?', déjà ouverte':''));b.style.setProperty('--i',k);b.classList.add('door',o.has(k)?'v-open':V[(k*3)%7]);b.innerHTML=(isToday?'<span class="tag">Aujourd’hui</span>':isSat?'<span class="tag">Blague</span>':isSun?'<span class="tag">Ornitho</span>':'')+(o.has(k)?'<span class="dlabel">'+k+' déc.</span><span class="dkind">'+kind(k)+'</span>':'<span class="num">'+k+'</span>'+((isSun||isSat||!ok)?'<span class="icons">'+(isSun?'<span class="wk">🦆</span>':isSat?'<span class="wk">😄</span>':'')+(!ok?LOCK:'')+'</span>':''));b.onclick=()=>{if(!ok)return show(k,true);o.add(k);if(!demo)save();show(k,false);render()};doors.appendChild(b)}doors.insertAdjacentHTML('beforeend',XMAS);countdown();document.getElementById('status').textContent=demo?'Toutes les fenêtres sont ouvertes en démo':'Ouverture selon la date réelle';document.getElementById('label').textContent=day===0?'Avant décembre':day+' décembre';document.getElementById('sim').hidden=!demo;document.getElementById('note').hidden=!demo}function show(k,locked){let e=entries[k]||['Surprise à venir','Cette fenêtre attend encore sa communication professionnelle.',''];if(locked)e=['Encore un peu de patience !','Cette fenêtre sera disponible à partir du '+k+' décembre.',''];modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">'+(locked?'🔒':'🎁')+'</div><div class="eyebrow">Jour '+k+(k%7===6?' · Dimanche':k%7===5?' · Samedi':' · La minute REA')+'</div><h2></h2><p></p><div class="source"></div></article>';modal.querySelector('h2').textContent=e[0];modal.querySelector('p').textContent=e[1];modal.querySelector('.source').textContent=e[2]?'Source : '+e[2]:'';modal.querySelector('.close').onclick=close;if(!locked)for(let i=0;i<12;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.left=(25+Math.random()*50)+'%';s.style.top=(40+Math.random()*25)+'%';document.body.append(s);setTimeout(()=>s.remove(),950)}}function close(){modal.hidden=true;modal.innerHTML=''}modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});function askPassword(){modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">🔒</div><div class="eyebrow">Accès réservé</div><h2>Mode démonstration</h2><form><p><label for="pw">Mot de passe :</label><br><input type="password" id="pw" autocomplete="off"></p><p class="err"></p><button type="submit">Déverrouiller</button></form></article>';modal.querySelector('.close').onclick=close;const pw=modal.querySelector('#pw');pw.focus();modal.querySelector('form').onsubmit=async ev=>{ev.preventDefault();if(await sha256(pw.value)===PASS_HASH){unlocked=true;document.getElementById('demo').textContent='Mode démo';close();enableDemo()}else{modal.querySelector('.err').textContent='Mot de passe incorrect.';pw.select()}}}document.getElementById('demo').onclick=()=>{unlocked?enableDemo():askPassword()};function enableDemo(){demo=true;document.getElementById('demo').classList.add('active');document.getElementById('real').classList.remove('active');slider.disabled=false;render()};document.getElementById('real').onclick=()=>{demo=false;document.getElementById('real').classList.add('active');document.getElementById('demo').classList.remove('active');slider.disabled=true;render()};slider.oninput=()=>{day=+slider.value;render()};render();
+
+/* ===== Animations ===== */
+(function(){
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+const doorEl = k => doors.querySelectorAll('.door')[k-1];
+
+/* Fiche qui grandit depuis la case cliquée, et y retourne à la fermeture */
+let flipK = 0, closing = false;
+function delta(a, b){
+  return 'translate(' + (a.left + a.width/2 - b.left - b.width/2) + 'px,' + (a.top + a.height/2 - b.top - b.height/2) + 'px) scale(' + (a.width/b.width) + ',' + (a.height/b.height) + ')';
+}
+const baseShow = show, baseClose = close;
+show = function(k, locked){
+  baseShow(k, locked);
+  const card = modal.querySelector('.card'), d = doorEl(k);
+  if (!card || !d || RM.matches) { flipK = 0; return; }
+  flipK = k; card.classList.add('flip');
+  card.animate([{transform: delta(d.getBoundingClientRect(), card.getBoundingClientRect()), borderRadius: '60px', opacity: .7}, {transform: 'none', borderRadius: '28px', opacity: 1}],
+    {duration: 560, easing: 'cubic-bezier(.2,.9,.25,1.04)'});
+  [...card.children].forEach((c, i) => c.animate([{opacity: 0, transform: 'translateY(16px)'}, {opacity: 1, transform: 'none'}],
+    {duration: 400, delay: 240 + i * 60, easing: 'ease-out', fill: 'backwards'}));
+};
+close = function(){
+  if (closing) return;
+  const card = modal.querySelector('.card.flip'), d = flipK && doorEl(flipK);
+  flipK = 0;
+  if (!card || !d || modal.hidden || RM.matches) return baseClose();
+  closing = true;
+  [...card.children].forEach(c => c.animate([{opacity: 1}, {opacity: 0}], {duration: 120, fill: 'forwards'}));
+  modal.animate([{opacity: 1}, {opacity: 0}], {duration: 420, easing: 'ease-in', fill: 'forwards'});
+  card.animate([{transform: 'none', opacity: 1}, {transform: delta(d.getBoundingClientRect(), card.getBoundingClientRect()), borderRadius: '60px', opacity: .2}],
+    {duration: 420, easing: 'cubic-bezier(.5,0,.75,0)', fill: 'forwards'})
+    .onfinish = () => { baseClose(); modal.getAnimations().forEach(a => a.cancel()); closing = false; };
+};
+
+/* Tache rouge qui part du curseur sur les boutons */
+document.querySelectorAll('.pill').forEach(p => {
+  const at = e => { const r = p.getBoundingClientRect(); p.style.setProperty('--x', e.clientX - r.left + 'px'); p.style.setProperty('--y', e.clientY - r.top + 'px'); };
+  p.addEventListener('pointerenter', at); p.addEventListener('pointerleave', at);
+});
+
+/* Ruban qui se dessine avec le défilement */
+const rib = document.querySelector('.ribbon path');
+if (rib) {
+  const L = rib.getTotalLength();
+  rib.style.strokeDasharray = L + ' ' + (L + 100);
+  rib.style.strokeDashoffset = L + 50;
+  const upd = () => { const p = RM.matches ? 1 : Math.min(1, .38 + scrollY / (innerHeight * 1.2)); rib.style.strokeDashoffset = (L + 50) * (1 - p); };
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    rib.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)'; upd();
+    setTimeout(() => { rib.style.transition = 'stroke-dashoffset .2s linear'; }, 1600);
+  }));
+  addEventListener('scroll', () => requestAnimationFrame(upd), {passive: true});
+}
+
+/* En-tête : ombre une fois la page défilée */
+const top = document.querySelector('.top');
+addEventListener('scroll', () => top.classList.toggle('scrolled', scrollY > 8), {passive: true});
+
+/* Apparitions au défilement */
+const show1 = el => {
+  if (el.matches('.foot')) { el.querySelector('.foot-giant').classList.add('in'); return; }
+  if (el === doors) { doors.classList.add('play', 'played'); setTimeout(() => doors.classList.remove('play'), 1800); }
+  else el.classList.add('in');
+};
+// Le grand « REA 26 » est décalé vers le bas : on observe le pied de page entier pour le déclencher
+const targets = [...document.querySelectorAll('[data-reveal]:not(.foot-giant),[data-lines]'), doors, document.querySelector('.foot')];
+if (!('IntersectionObserver' in window)) targets.forEach(show1);
+else {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { show1(e.target); io.unobserve(e.target); } }), {rootMargin: '0px 0px -12% 0px', threshold: .12});
+  targets.forEach(t => io.observe(t));
+}
+})();
+</script>
+</body></html>
