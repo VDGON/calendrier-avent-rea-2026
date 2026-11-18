@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="ornithorynque.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&display=swap"></noscript>
 <style>
 :root{--cream:#F4ECE2;--paper:#FBF4EA;--red:#E5401B;--red-d:#B82A0A;--green:#1E4A38;--ink:#141414}
 *{box-sizing:border-box}
@@ -210,6 +210,8 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 .p-case0,.p-sunday{display:inline-block;margin-top:16px;width:64px;height:48px}
 .hunt{position:fixed;left:16px;bottom:16px;z-index:9;appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font:600 13px/1 'Inter Tight',sans-serif;padding:9px 14px 9px 10px;border-radius:999px;box-shadow:0 6px 20px #14141433;animation:stick .5s cubic-bezier(.3,1.6,.5,1)}
 .hunt[hidden]{display:none}
+.hunt-q{margin-left:2px;padding-left:9px;border-left:1px solid #ffffff40;font-weight:500;opacity:.85}
+.psst{font-style:italic;color:var(--red-d)}
 .hunt .platy-ico{display:inline-block;width:30px;height:22px}
 .hunt .platy-ico svg,.hunt .platy-ico img{display:block;width:100%;height:100%;object-fit:contain}
 .hint{position:fixed;left:16px;bottom:62px;z-index:9;max-width:min(280px,calc(100vw - 32px));background:var(--paper);color:var(--ink);font:500 13px/1.4 'Inter Tight',sans-serif;padding:10px 14px;border-radius:14px;box-shadow:inset 0 0 0 1.5px var(--ink),4px 4px 0 var(--red);animation:stick .4s cubic-bezier(.3,1.6,.5,1)}
@@ -254,6 +256,7 @@ body.xtreme .tag{animation:spin 1s linear infinite}
 
 /* Ancres */
 #calendrier{scroll-margin-top:96px}
+.door{scroll-margin-top:110px}
 .door.ping::after{content:"";position:absolute;inset:-7px;border-radius:28px;border:3px solid var(--red);pointer-events:none;animation:ping 1.4s ease-out 3}
 @keyframes ping{from{opacity:1;scale:.96}to{opacity:0;scale:1.18}}
 @media(max-width:640px){#calendrier{scroll-margin-top:12px}.door.ping::after{border-radius:16px;inset:-5px}}
@@ -311,6 +314,7 @@ body.xtreme .tag{animation:spin 1s linear infinite}
       <div class="k">Le principe</div>
       <div class="t">Une case s’ouvre chaque jour, du 1er au 23 décembre.</div>
       <div class="w">Samedi : la blague 😄 · Dimanche : l’ornithorynque 🦆</div>
+      <div class="w psst">Psst… 7 ornithorynques se cachent sur cette page, et pas seulement eux. Le compteur en bas à gauche donne des indices.</div>
     </div>
   </div>
 </section>
@@ -376,7 +380,7 @@ function progress(){
     n===avail?'À jour ! '+n+' case'+s(n)+' sur '+avail+' ouverte'+s(n)+' 🎉':
     'Vous avez ouvert '+n+' case'+s(n)+' sur '+avail+' disponible'+s(avail);
 }
-function render(){doors.innerHTML='<span aria-hidden="true"></span>';for(let k=1;k<=23;k++){const b=document.createElement('button');const isSun=k%7===6,isSat=k%7===5,ok=allowed(k),isToday=k===today(),o=opened();b.className=(isSun?'sunday ':isSat?'saturday ':'')+(!ok?'locked ':'')+(isToday?'today ':'')+(o.has(k)?'opened':'');b.setAttribute('aria-label','Jour '+k+(isToday?', aujourd’hui':'')+(isSun?', anecdote du dimanche':'')+(ok?', accessible':', verrouillé')+(o.has(k)?', déjà ouverte':''));b.style.setProperty('--i',k);b.classList.add('door',o.has(k)?'v-open':V[(k*3)%7]);b.innerHTML=(isToday?'<span class="tag">Aujourd’hui</span>':isSat?'<span class="tag">Blague</span>':isSun?'<span class="tag">Ornitho</span>':'')+(o.has(k)?'<span class="dlabel">'+k+' déc.</span><span class="dkind">'+kind(k)+'</span>':'<span class="num">'+k+'</span>'+((isSun||isSat||!ok)?'<span class="icons">'+(isSun?'<span class="wk">🦆</span>':isSat?'<span class="wk">😄</span>':'')+(!ok?LOCK:'')+'</span>':''));b.onclick=()=>{if(!ok)return show(k,true);o.add(k);if(!demo)save();show(k,false);render()};doors.appendChild(b)}doors.insertAdjacentHTML('beforeend',xmasHTML());bindXmas();countdown();progress();document.getElementById('status').textContent=demo?'Toutes les fenêtres sont ouvertes en démo':'Ouverture selon la date réelle';document.getElementById('label').textContent=day===0?'Avant décembre':day+' décembre';document.getElementById('sim').hidden=!demo;document.getElementById('note').hidden=!demo}function show(k,locked){let e=entries[k]||['Surprise à venir','Cette fenêtre attend encore sa communication professionnelle.',''];if(locked)e=['Encore un peu de patience !','Cette fenêtre sera disponible à partir du '+k+' décembre.',''];modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">'+(locked?'🔒':'🎁')+'</div><div class="eyebrow">Jour '+k+(k%7===6?' · Dimanche':k%7===5?' · Samedi':' · La minute REA')+'</div><h2></h2><p></p><div class="source"></div></article>';modal.querySelector('h2').textContent=e[0];modal.querySelector('p').textContent=e[1];modal.querySelector('.source').textContent=e[2]?'Source : '+e[2]:'';modal.querySelector('.close').onclick=close;if(!locked)for(let i=0;i<12;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.left=(25+Math.random()*50)+'%';s.style.top=(40+Math.random()*25)+'%';document.body.append(s);setTimeout(()=>s.remove(),950)}}function close(){modal.hidden=true;modal.innerHTML=''}modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});function askPassword(){modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">🔒</div><div class="eyebrow">Accès réservé</div><h2>Mode démonstration</h2><form><p><label for="pw">Mot de passe :</label><br><input type="password" id="pw" autocomplete="off"></p><p class="err"></p><button type="submit">Déverrouiller</button></form></article>';modal.querySelector('.close').onclick=close;const pw=modal.querySelector('#pw');pw.focus();modal.querySelector('form').onsubmit=async ev=>{ev.preventDefault();if(await sha256(pw.value)===PASS_HASH){unlocked=true;document.getElementById('demo').textContent='Mode démo';close();enableDemo()}else{modal.querySelector('.err').textContent='Mot de passe incorrect.';pw.select()}}}document.getElementById('demo').onclick=()=>{unlocked?enableDemo():askPassword()};function enableDemo(){demo=true;document.getElementById('demo').classList.add('active');document.getElementById('real').classList.remove('active');slider.disabled=false;render()};document.getElementById('real').onclick=()=>{demo=false;document.getElementById('real').classList.add('active');document.getElementById('demo').classList.remove('active');slider.disabled=true;render()};slider.oninput=()=>{day=+slider.value;render()};render();
+function render(){doors.innerHTML='<span aria-hidden="true"></span>';for(let k=1;k<=23;k++){const b=document.createElement('button');const isSun=k%7===6,isSat=k%7===5,ok=allowed(k),isToday=k===today(),o=opened();b.className=(isSun?'sunday ':isSat?'saturday ':'')+(!ok?'locked ':'')+(isToday?'today ':'')+(o.has(k)?'opened':'');b.setAttribute('aria-label','Jour '+k+(isToday?', aujourd’hui':'')+(isSun?', anecdote du dimanche':'')+(ok?', accessible':', verrouillé')+(o.has(k)?', déjà ouverte':''));b.id='case-'+k;b.style.setProperty('--i',k);b.classList.add('door',o.has(k)?'v-open':V[(k*3)%7]);b.innerHTML=(isToday?'<span class="tag">Aujourd’hui</span>':isSat?'<span class="tag">Blague</span>':isSun?'<span class="tag">Ornitho</span>':'')+(o.has(k)?'<span class="dlabel">'+k+' déc.</span><span class="dkind">'+kind(k)+'</span>':'<span class="num">'+k+'</span>'+((isSun||isSat||!ok)?'<span class="icons">'+(isSun?'<span class="wk">🦆</span>':isSat?'<span class="wk">😄</span>':'')+(!ok?LOCK:'')+'</span>':''));b.onclick=()=>{if(!ok)return show(k,true);o.add(k);if(!demo)save();show(k,false);render()};doors.appendChild(b)}doors.insertAdjacentHTML('beforeend',xmasHTML());bindXmas();countdown();progress();document.getElementById('status').textContent=demo?'Toutes les fenêtres sont ouvertes en démo':'Ouverture selon la date réelle';document.getElementById('label').textContent=day===0?'Avant décembre':day+' décembre';document.getElementById('sim').hidden=!demo;document.getElementById('note').hidden=!demo}function show(k,locked){let e=entries[k]||['Surprise à venir','Cette fenêtre attend encore sa communication professionnelle.',''];if(locked)e=['Encore un peu de patience !','Cette fenêtre sera disponible à partir du '+k+' décembre.',''];modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">'+(locked?'🔒':'🎁')+'</div><div class="eyebrow">Jour '+k+(k%7===6?' · Dimanche':k%7===5?' · Samedi':' · La minute REA')+'</div><h2></h2><p></p><div class="source"></div></article>';modal.querySelector('h2').textContent=e[0];modal.querySelector('p').textContent=e[1];modal.querySelector('.source').textContent=e[2]?'Source : '+e[2]:'';modal.querySelector('.close').onclick=close;if(!locked)for(let i=0;i<12;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.left=(25+Math.random()*50)+'%';s.style.top=(40+Math.random()*25)+'%';document.body.append(s);setTimeout(()=>s.remove(),950)}}function close(){modal.hidden=true;modal.innerHTML=''}modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});function askPassword(){modal.hidden=false;modal.innerHTML='<article class="card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="gift">🔒</div><div class="eyebrow">Accès réservé</div><h2>Mode démonstration</h2><form><p><label for="pw">Mot de passe :</label><br><input type="password" id="pw" autocomplete="off"></p><p class="err"></p><button type="submit">Déverrouiller</button></form></article>';modal.querySelector('.close').onclick=close;const pw=modal.querySelector('#pw');pw.focus();modal.querySelector('form').onsubmit=async ev=>{ev.preventDefault();if(await sha256(pw.value)===PASS_HASH){unlocked=true;document.getElementById('demo').textContent='Mode démo';close();enableDemo()}else{modal.querySelector('.err').textContent='Mot de passe incorrect.';pw.select()}}}document.getElementById('demo').onclick=()=>{unlocked?enableDemo():askPassword()};function enableDemo(){demo=true;document.getElementById('demo').classList.add('active');document.getElementById('real').classList.remove('active');slider.disabled=false;render()};document.getElementById('real').onclick=()=>{demo=false;document.getElementById('real').classList.add('active');document.getElementById('demo').classList.remove('active');slider.disabled=true;render()};slider.oninput=()=>{day=+slider.value;render()};render();
 
 /* ===== Animations ===== */
 (function(){
@@ -524,18 +528,37 @@ hunt.type = 'button'; hunt.className = 'hunt'; hunt.hidden = true;
 hunt.title = 'Chasse aux ornithorynques : cliquez pour un indice';
 document.body.append(hunt);
 function updHunt(){
-  hunt.hidden = !found.size;
-  hunt.innerHTML = '<span class="platy-ico">' + PLATY + '</span>' + found.size + '/' + TOTAL;
+  hunt.hidden = false; /* visible dès l'arrivée, à 0/7 */
+  hunt.innerHTML = '<span class="platy-ico">' + PLATY + '</span>' + found.size + '/' + TOTAL + '<span class="hunt-q">Indice ?</span>';
   hunt.setAttribute('aria-label', 'Ornithorynques trouvés : ' + found.size + ' sur ' + TOTAL + '. Afficher un indice');
 }
 updHunt();
-let hintEl;
+/* Indices sur les autres secrets du site */
+const OTHER = [
+  'La boule de Noël est chatouilleuse… surtout au 5e clic.',
+  'L’astérisque du logo rêve de devenir flocon.',
+  'L’autocollant « fait main » a plus d’une chose à dire.',
+  'Insistez 5 fois sur une case fermée : la persévérance est récompensée.',
+  'Survolez le grand « REA 26 » tout en bas : les lettres ont des fourmis dans les jambes.',
+  'Les gamers des années 90 connaissent un code secret : ↑ ↑ ↓ ↓ ← → ← → B A.',
+  'Tapez au clavier les trois lettres de notre assurance préférée.',
+  'Un mot italien cher aux experts déclenche quelque chose. Tapez-le !',
+  'Écrivez le nom de la fête au clavier : les cases font la ola.',
+  'Ouvrez les 23 cases : quelqu’un viendra vous féliciter.',
+  'Les curieux du code peuvent ouvrir la console du navigateur (F12).',
+  'Revenez à l’heure du repas, ou le vendredi après-midi…',
+  'Le 6 décembre, il pourrait pleuvoir des mandarines.'
+];
+let hintEl, turn = 0;
 hunt.onclick = () => {
   const left = Object.keys(SPOTS).filter(k => !found.has(k));
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  turn++;
+  const msg = left.length && turn % 2 === 1 ? '🦆 Ornithorynque : ' + SPOTS[pick(left)] : '✨ Autre secret : ' + pick(OTHER);
   if (hintEl) hintEl.remove();
   hintEl = document.createElement('div'); hintEl.className = 'hint'; hintEl.setAttribute('role', 'status');
-  hintEl.textContent = left.length ? 'Indice : ' + SPOTS[left[Math.floor(Math.random() * left.length)]] : 'Tous trouvés ! Vous êtes officiellement expert·e 🎓';
-  document.body.append(hintEl); const h = hintEl; setTimeout(() => h.remove(), 5000);
+  hintEl.textContent = msg;
+  document.body.append(hintEl); const h = hintEl; setTimeout(() => h.remove(), 6000);
 };
 function diploma(){
   confetti();
@@ -675,21 +698,35 @@ window.__eggs = {snow, confetti, terms, parade, slap, toast, xtreme, wave, stNic
 
 /* ===== Ancres : #calendrier et #case-N (lien depuis Teams) ===== */
 (function(){
-function go(){
+let pinged = false;
+function target(){
   const m = location.hash.match(/^#case-(\d{1,2})$/);
-  if (!m) return;
-  const k = +m[1], d = doors.querySelectorAll('.door')[k-1];
-  if (!d) return;
-  d.scrollIntoView({block: 'center'});
-  setTimeout(() => {
-    const dd = doors.querySelectorAll('.door')[k-1];
-    if (!dd) return;
-    dd.classList.add('ping');
-    setTimeout(() => dd.classList.remove('ping'), 4500);
-  }, 900);
+  return m ? doors.querySelectorAll('.door')[+m[1] - 1] : null;
 }
-addEventListener('load', go);
-addEventListener('hashchange', go);
+function center(smooth){
+  const d = target();
+  if (!d) return false;
+  const top = d.getBoundingClientRect().top + scrollY - (innerHeight - d.offsetHeight) / 2;
+  window.scrollTo({top: Math.max(0, top), behavior: smooth ? 'smooth' : 'instant'});
+  return true;
+}
+function ping(){
+  if (pinged) return; pinged = true;
+  setTimeout(() => {
+    const d = target(); if (!d) return;
+    d.classList.add('ping');
+    setTimeout(() => d.classList.remove('ping'), 4500);
+  }, 700);
+}
+if (location.hash.startsWith('#case-') && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
+/* 1. Tout de suite, sans attendre les polices ni les images */
+if (center(false)) ping();
+/* 2. Une fois les polices prêtes (la grille peut avoir bougé) */
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (location.hash.startsWith('#case-')) center(true); });
+/* 3. Filet de sécurité à la fin du chargement complet */
+addEventListener('load', () => { if (location.hash.startsWith('#case-')) center(true); });
+/* 4. Si le lien change sans recharger la page */
+addEventListener('hashchange', () => { pinged = false; if (center(true)) ping(); });
 })();
 </script>
 </body></html>
