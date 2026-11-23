@@ -226,7 +226,9 @@ h2.big{margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(40p
 .fall.conf{width:10px;height:14px;border-radius:2px}
 .parade{position:fixed;left:0;bottom:24px;z-index:12;pointer-events:none;width:140px;animation:parade 5s linear forwards}
 .parade svg,.parade img{display:block;width:140px;height:105px;animation:waddle .35s ease-in-out infinite alternate}
-.parade .crown{position:absolute;left:22%;top:-26px;font-size:30px;z-index:1}
+.parade .crown{position:absolute;left:56%;top:-26px;font-size:30px;z-index:1}
+/* Le dessin regarde vers la gauche : on le retourne pour qu’il avance tête la première */
+.parade img{scale:-1 1}
 @keyframes parade{from{translate:-160px 0}to{translate:calc(100vw + 20px) 0}}
 @keyframes waddle{from{rotate:-4deg}to{rotate:4deg}}
 .bauble>svg{cursor:pointer}
