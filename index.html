@@ -313,6 +313,12 @@ body.xtreme .tag{animation:spin 1s linear infinite}
 .wall-deco{width:90%;height:45%;right:-20%}
 #wishwall{scroll-margin-top:76px}
 }
+/* ===== Nouveaux vœux à l’arrivée ===== */
+.nw-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.nw-btn{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 16px;border:0;border-radius:999px;background:var(--ink);color:var(--paper);font:600 14px 'Inter Tight',sans-serif;text-decoration:none;cursor:pointer}
+.nw-btn:hover{background:var(--red);color:var(--paper)}
+.nw-go{background:var(--green)}
+
 /* ===== Quiz et votes ===== */
 .quiz{display:grid;gap:10px;margin-top:18px}
 .q-opt{appearance:none;text-align:left;font:600 15px/1.35 'Inter Tight',sans-serif;color:var(--ink);background:#fff;border:0;border-radius:16px;padding:12px 16px;box-shadow:inset 0 0 0 1.5px var(--ink);cursor:pointer;transition:transform .2s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s}
@@ -518,7 +524,7 @@ const WISHES=/*VOEUX:DEBUT*/[
 ["Moreno","Que tout le monde puisse avoir un magnifique rejoas de Noël"]
 ]/*VOEUX:FIN*/;
 const ARROW='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
-/* Les vœux importés sont lisibles dès le 1er décembre, pendant que le formulaire reste ouvert jusqu'au 22 */
+/* Les vœux importés sont lisibles dès qu’ils sont publiés, pendant que le formulaire reste ouvert jusqu’au 22 */
 function wishesVisible(){return WISHES.length>0}
 function xmasState(){
   const now=new Date();
@@ -534,13 +540,24 @@ function xmasHTML(){
   if(s==='form')return'<a class="xmas xlink" id="xmas" style="--i:24" href="'+FORM+'" target="_blank" rel="noopener">'+deco+head+'<span class="go">Déposez votre vœu '+ARROW+'</span></a>';
   return'<div class="xmas" id="xmas" style="--i:24">'+deco+head+(s==='soon'?'<span class="go static">Les vœux arrivent bientôt 🎁</span>':'')+'</div>';
 }
-function showWishes(){
+/* Vœux déjà vus par ce navigateur (pour n'afficher automatiquement que les nouveaux) */
+const SEEN_KEY='rea-avent-2026-voeux-vus';
+const wishId=w=>w[0]+'|'+w[1];
+function seenWishes(){try{return new Set(JSON.parse(localStorage.getItem(SEEN_KEY)||'[]'))}catch(e){return new Set()}}
+function markWishesSeen(list){const s=seenWishes();list.forEach(w=>s.add(wishId(w)));try{localStorage.setItem(SEEN_KEY,JSON.stringify([...s]))}catch(e){}}
+function newWishes(){const s=seenWishes();return WISHES.filter(w=>!s.has(wishId(w)))}
+function wishModal(list,eyebrow,title,extra){
   modal.hidden=false;
-  modal.innerHTML='<article class="card wishes-card" role="dialog" aria-modal="true" aria-label="Les vœux de l’équipe"><button class="close" aria-label="Fermer">×</button><div class="eyebrow">Le mur des vœux · Joyeux Noël</div><h2>Les vœux de l’équipe</h2><div class="wishes"></div></article>';
+  modal.innerHTML='<article class="card wishes-card" role="dialog" aria-modal="true"><button class="close" aria-label="Fermer">×</button><div class="eyebrow"></div><h2></h2><div class="wishes"></div></article>';
+  const card=modal.querySelector('.card');card.setAttribute('aria-label',title);
+  card.querySelector('.eyebrow').textContent=eyebrow;card.querySelector('h2').textContent=title;
   const box=modal.querySelector('.wishes');
-  WISHES.forEach((w,i)=>{const q=document.createElement('blockquote');q.className='wish';q.style.setProperty('--r',(i%2?1.2:-1.2)+'deg');q.style.setProperty('--d',i*60+'ms');const p=document.createElement('p');p.textContent=w[1];q.append(p);if(w[0]){const c=document.createElement('cite');c.textContent='— '+w[0];q.append(c)}box.append(q)});
+  list.forEach((w,i)=>{const q=document.createElement('blockquote');q.className='wish';q.style.setProperty('--r',(i%2?1.2:-1.2)+'deg');q.style.setProperty('--d',i*60+'ms');const p=document.createElement('p');p.textContent=w[1];q.append(p);if(w[0]){const c=document.createElement('cite');c.textContent='— '+w[0];q.append(c)}box.append(q)});
+  if(extra)card.append(extra);
   modal.querySelector('.close').onclick=close;
+  markWishesSeen(list);
 }
+function showWishes(){wishModal(WISHES,'Le mur des vœux · Joyeux Noël','Les vœux de l’équipe')}
 function bindXmas(){const x=document.getElementById('xmas');if(x&&x.tagName==='BUTTON')x.onclick=showWishes;wall()}
 /* Section « Le mur des vœux » : formulaire jusqu'au 22, puis affichage des vœux */
 function wall(){
@@ -1017,6 +1034,30 @@ show = function(k, locked){
   const p = c.querySelector('p'); p ? p.after(box) : c.append(box);
   paint(box, q, k, saved[k] != null ? saved[k] : null);
 };
+})();
+
+/* ===== Nouveaux vœux affichés automatiquement à l'arrivée sur le site ===== */
+(function(){
+/* Pas d'affichage automatique quand on arrive par un lien vers une case (bouton de la carte Teams) */
+if (/^#case-/.test(location.hash)) return;
+setTimeout(() => {
+  const list = newWishes();
+  if (!list.length || !modal.hidden) return;
+  const n = list.length, total = WISHES.length;
+  const actions = document.createElement('div'); actions.className = 'nw-actions';
+  if (total > n) {
+    const all = document.createElement('button'); all.type = 'button'; all.className = 'nw-btn';
+    all.textContent = 'Lire tous les vœux (' + total + ')'; all.onclick = showWishes; actions.append(all);
+  }
+  if (xmasState() === 'form') {
+    const go = document.createElement('a'); go.className = 'nw-btn nw-go'; go.href = FORM; go.target = '_blank'; go.rel = 'noopener';
+    go.textContent = '✍️ Déposer le mien'; actions.append(go);
+  }
+  const first = !seenWishes().size;
+  wishModal(list, 'Le mur des vœux · ' + (first ? 'Bienvenue !' : 'Du nouveau !'),
+    n === 1 ? (first ? 'Un vœu pour l’équipe' : 'Un nouveau vœu pour l’équipe !') : (first ? n + ' vœux pour l’équipe' : n + ' nouveaux vœux pour l’équipe !'),
+    actions.children.length ? actions : null);
+}, 1400);
 })();
 </script>
 </body></html>
