@@ -476,6 +476,9 @@ const entries={
 3:['Le saviez-vous ? — Frais de transport et viatiques',
 'Dans le cadre de l’art. 14quater LAI (code 577), les frais de transport et les viatiques peuvent être pris en charge pour des stages de deux semaines au maximum. Au-delà, le stage doit être transformé en mesure selon l’art. 14a ou 15 LAI, avec la possibilité d’un art. 14quater LAI (code 579). Le schéma « Viatiques et frais de transport » a été adapté.',
 'Communication Experts ANDIAMO n° 2'],
+4:['Le saviez-vous ? — Formation nettement prolongée',
+'Une formation peut être considérée comme nettement prolongée à partir d’environ une troisième année supplémentaire.\n\nExemple : Kylian suit un Bachelor en psychologie. En raison de son atteinte, son parcours est prolongé de plusieurs années. Dès une sixième année de formation, l’assuré peut ouvrir un droit à des indemnités journalières (env. CHF 700.–).',
+'Communication Experts ANDIAMO n° 8'],
 5:['La blague du samedi',
 'Pourquoi le calendrier de l’Avent est-il un excellent gestionnaire de dossiers ?\n\nParce qu’il ouvre exactement un dossier par jour ! 😄',
 ''],
@@ -486,7 +489,8 @@ const entries={
 'Une seule réponse possible… et sans demander à votre voisin·e !',
 '','Quiz',
 {options:['A. Comment ORienter ?','B. Cellule d’Orientation','C. Je ne sais pas, je vais demander aux collègues'],answer:1,
- feedback:['Presque ! Bien essayé, mais COR signifie Cellule d’Orientation.','Bravo ! COR, c’est bien la Cellule d’Orientation 🎉','Bonne idée de demander ! La réponse : COR, c’est la Cellule d’Orientation.']}],
+ noReveal:[2],
+ feedback:['Presque ! Bien essayé, mais COR signifie Cellule d’Orientation.','Bravo ! COR, c’est bien la Cellule d’Orientation 🎉','Bonne idée de demander !']}],
 8:['Le saviez-vous ? — Indemnisation de l’employeur',
 'Dans le cadre d’une formation professionnelle initiale (art. 16 LAI), l’employeur peut être dédommagé pour un surcroît de travail considérable : suivi intensif, adaptation des processus ou encadrement spécifique. Cette indemnisation repose sur l’art. 14quater LAI.',
 'Communication Experts ANDIAMO n° 6'],
@@ -999,12 +1003,14 @@ const ARR = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke=
 
 function paint(box, q, k, choice){
   const btns = box.querySelectorAll('.q-opt'), fb = box.querySelector('.q-fb');
+  /* Certaines réponses (ex. « je vais demander aux collègues ») ne révèlent rien et laissent rejouer */
+  const reveal = q.answer != null && choice != null && !(q.noReveal || []).includes(choice);
   btns.forEach((b, i) => {
     b.classList.toggle('chosen', i === choice);
-    b.classList.toggle('correct', q.answer != null && choice != null && i === q.answer);
-    b.classList.toggle('wrong', q.answer != null && i === choice && choice !== q.answer);
+    b.classList.toggle('correct', reveal && i === q.answer);
+    b.classList.toggle('wrong', reveal && i === choice && choice !== q.answer);
     b.setAttribute('aria-pressed', i === choice ? 'true' : 'false');
-    if (q.answer != null && choice != null) b.disabled = true;
+    b.disabled = reveal;
   });
   fb.innerHTML = '';
   if (choice == null) return;
