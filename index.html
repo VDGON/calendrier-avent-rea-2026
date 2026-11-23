@@ -519,7 +519,7 @@ const WISHES=/*VOEUX:DEBUT*/[
 ]/*VOEUX:FIN*/;
 const ARROW='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
 /* Les vœux importés sont lisibles dès le 1er décembre, pendant que le formulaire reste ouvert jusqu'au 22 */
-function wishesVisible(){return WISHES.length>0&&(demo||new Date()>=new Date(2026,11,1))}
+function wishesVisible(){return WISHES.length>0}
 function xmasState(){
   const now=new Date();
   if(demo||now<new Date(2026,11,23))return'form';
